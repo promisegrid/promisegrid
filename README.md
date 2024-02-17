@@ -156,13 +156,14 @@ the response will be a fulfillment, a revocation, or a further promise
 to fulfill at a later time.  
 
 This recognition that capabilities are like promises is key to the
-design integrity of a decentralized system.  As in Promise Theory:
+design integrity of a decentralized system.  As in Promise Theory,
+these principles hold:
 
-- A resource cannot issue capability tokens promising access to
-  another resource.
-- In a system composed of autonomous parts, a resource sending
-  unsolicited directives to another, imposing obligations, should
-  expect poor results.
+1. A resource cannot issue capability tokens promising access to
+   another resource.
+2. In a system composed of autonomous parts, a resource sending
+   unsolicited directives to another, imposing obligations, should
+   expect poor results.
 
 These principles are consistent with behavior and dysfunction observed
 in human organizations and distributed systems.
@@ -170,14 +171,23 @@ in human organizations and distributed systems.
 While we expect some evolution of this model as we develop the grid,
 as of this writing it appears that:
 
-- An issuer creates a capability token by
-  [currying](https://en.wikipedia.org/wiki/Currying) a function that
-  will fulfill the promise, and then hashing the result.  The hash is 
-  both the capability token and the address of the curried function.
-- A holder presents the token to the issuer, who then fulfills the
-  promise by invoking the curried function.
-- The messages containing the token issue, presentation, and response
-  are all part of the grid's protocol, and are managed by the kernel.
+- An issuer creates a capability token by creating a
+  [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming))
+  containing a function that will fulfill the promise, and then
+  hashing the closure's code.  The hash is both the capability token
+  and the address of the closure.
+- A holder calls the closure (sends a message to the closure's
+  address).  When called, the closure can elect to fulfill the
+  promise, revoke the capability token, or issue a further promise.
+- Closures can be nested; the choice of whether to revoke or fulfill
+  the promise could be handled by a security screening closure, for
+  instance, before forwarding the request to the original issuer. This
+  could help simplify issuer code.  
+    - In order to avoid breaking principle (1) above, the issuer would
+      send the original promise to the security screener, so the
+      security screener could wrap it in a further promise. This
+      avoids the case where an issuer would otherwise be making a
+      promise for the security screener to fulfill.
 - The kernel could maintain a graph of promises and their fulfillment,
   and could use this graph to manage access control and to facilitate
   consensus formation and conflict resolution among participants, or
