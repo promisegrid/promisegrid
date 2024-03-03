@@ -263,7 +263,7 @@ content-addressable store on each node.
 
 Grid functions are pure functions -- they observe [referential
 transparency](https://en.wikipedia.org/wiki/Referential_transparency),
-always producing the same output fron the same inputs. 
+always producing the same output from the same inputs. 
 
 The cache is a directed graph database.  Vertices are typically either
 hashes or arguments -- a message, when received, can be decomposed,
@@ -289,7 +289,10 @@ currently meeting as a group weekly as well as 1:1 in between, and
 we'll soon be standing up community systems (email, chat, etc.).  In
 the meantime, if you're interested in joining a mind-bending open
 source project that could change the world, watch this repo and
-contact @stevegt on twitter.
+contact Steve Traugott on
+[github](https://www.github.com/stevegt), 
+[twitter](https://www.twitter.com/stevegt), or
+[linkedin](https://www.linkedin.com/in/stevegt/).
 
 ## Sponsorship
 
