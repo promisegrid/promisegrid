@@ -1,20 +1,52 @@
 # PromiseGrid
 
-PromiseGrid is a decentralized virtual machine.
+PromiseGrid is a decentralized computing, communications, and
+governance system. PromiseGrid is to computation what the Internet is
+to communication -- the Internet is a decentralized network;
+PromiseGrid is a decentralized computer.  Owned and operated by its
+users rather than any single legal entity, the grid is scalable and
+resilient, growing as users join. 
 
-## Advantages
+This document is a high-level overview of the project.  
 
-- The grid remains operational even if parts go offline.
+## Why this matters
+
+[Tragedy of the commons](https://en.wikipedia.org/wiki/Tragedy_of_the_commons) 
+is a fundamental problem in corporate, community, and national
+governance, and it is a problem that PromiseGrid is designed to
+address.
+
+Tragedy of the commons (ToC) is a situation in a shared-resource
+system where individual users, acting independently according to their
+own self-interest, behave contrary to the common good by depleting or
+spoiling that resource through their collective action.  The resource
+in question may be the well-being of the organization or community as
+a whole, or it may be a shared physical, natural, or digital resource.
+
+PromiseGrid addresses ToC by providing an equitable platform for
+collaboration and shared resource management. The grid's design is
+based on several principles from [Promise Theory](https://en.wikipedia.org/wiki/Promise_theory) by Mark Burgess.
+These principles provide a foundation for a decentralized system that
+can not only govern itself but also provide governance as a service to
+its hosted organizations and communities.
+
+## Features
+
 - Users own their own nodes.
 - The grid grows as nodes join.
+- A node can be as small as a browser tab, a phone, or a Raspberry Pi. 
+- Organizations and communities join the grid without centralized
+  hosting costs.
 - Applications can be loaded from a URL and executed in a browser tab.
 - Applications can be executed from a command line.
 - Users control the choice and version of the software they run.
-- The grid uses capability-based security for fine-grained access control.
-- The grid is a language-agnostic general purpose computer.
-- Applications can be composed from multiple modules in mixed languages.
-- Organizations and communities join the grid without up-front hosting costs.
-- Consensus, conflict resolution, and governance mechanisms are built into the grid.
+- Applications can be composed from multiple modules in mixed
+  languages.
+- The grid remains operational even if parts go offline.
+- The grid uses capability-based security for fine-grained access
+  control.
+- The same consensus, conflict resolution, and governance mechanisms
+  that manage the grid are available to hosted applications and users.
 
 ## Technology 
 
