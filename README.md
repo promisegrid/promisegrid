@@ -175,10 +175,11 @@ written could in theory be stored and addressed in the grid.
 
 ### Capability-as-Promise Model
 
-The PromiseGrid kernel uses capability-based security for access
-control.  We also consider capabilities to be a form of promise, both
-in the sense of javascript-style async promises and in the sense of
-promises as described in [Promise Theory](https://en.wikipedia.org/wiki/Promise_theory) by Mark Burgess.
+The PromiseGrid kernel uses [capability-based security](https://en.wikipedia.org/wiki/Capability-based_security) 
+for access control.  We also consider capabilities to be a form of
+promise, both in the sense of javascript-style async promises and in
+the sense of promises as described in [Promise
+Theory](https://en.wikipedia.org/wiki/Promise_theory) by Mark Burgess.
 
 In our model, a capability token represents a promise that the issuer
 will either break or fulfill at a later time.  Revocation of a
