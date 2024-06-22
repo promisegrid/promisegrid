@@ -1,9 +1,11 @@
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In: LICENSE, README.md, local/README-wip.md, local/README.chat,
- local/README.pdf, local/announce.md, local/mcp-365-todos.md, local/query,
- local/tags
-Out: LICENSE, README.md, local/README-wip.md, local/README.chat,
- local/README.pdf, local/announce.md, local/mcp-365-todos.md, local/query,
- local/tags
+In: README.md
+Out: README.md
 
+* explain why decentralized is inherently good, e.g.:
+ * resiliency
+ * crisis preparedness and response
+ * we have to expect people and orgs to act in their own self-interest
+  * it’s not healthy for them or us if we don’t
+ * centralized services are be definition acting primarily in the self-interest of the owner
