@@ -3,6 +3,8 @@ Content-Transfer-Encoding: quoted-printable
 In: README.md
 Out: README.md
 
-clarify that hash size is not hardcoded but is instead part of the
-protocol; we encode hashes using 
-[https://multiformats.io/multihash/](https://multiformats.io/multihash/) 
+Add an italized, indented block of text at the beginning of each
+section summarizing the section.  The summary should be accessible,
+colloquial, interesting, and short.  It could use an analogy, simile,
+or metaphor.  
+

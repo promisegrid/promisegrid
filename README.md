@@ -70,7 +70,7 @@ governance within organizations, networks, and broader society.
 Through computational governance, tasks such as consensus finding,
 resource allocation, and policy enforcement can be implemented in a
 decentralized and programmatic fashion, reducing the need for
-buraucracy while improving the scalability and adaptability of
+bureaucracy while improving the scalability and adaptability of
 governance mechanisms.
 
 ## Features
@@ -89,7 +89,7 @@ governance mechanisms.
 - The grid uses capability-based security for fine-grained access
   control.
 - The same consensus, conflict resolution, and governance mechanisms
-  (system calls) that manage the grid are available to hosted
+  that manage the grid are available to hosted
   applications and users.
 
 ## Technology 
@@ -206,7 +206,7 @@ as a container orchestrator similar to Kubernetes or Docker Swarm.
 For bare-metal applications, the grid can manage the deployment of
 disk images and configuration files to servers, and can manage the
 execution of applications on those servers -- a bare-metal server is
-jsut another "sandbox".  This allows the grid to be used for
+just another "sandbox".  This allows the grid to be used for
 configuration management, following DevOps and Infrastructure as Code
 (IoC) principles.
 
@@ -218,6 +218,10 @@ This allows the grid to store and execute code and access data from
 any node in the network, and to replicate code and data across the
 network as needed.  This is a key feature of the grid's scalability
 and resilience.
+
+To future-proof the grid, the kernel does not hardcode the hash size
+or hash function.  PromiseGrid utilizes the Multihash format specified by the
+[Multiformats project](https://multiformats.io/multihash/). 
 
 Because a grid address is a cryptographic hash of the content, every
 piece of code, whether a large binary or a small library function, has
@@ -390,5 +394,4 @@ contact Steve Traugott on
 PromiseGrid development is supported by 
 [C D International Technology, Inc.](http://www.cdint.com/) and 
 [TerraLuna, LLC](http://www.t7a.org).
-
 
