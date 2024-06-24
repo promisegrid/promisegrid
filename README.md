@@ -1,3 +1,4 @@
+markdown
 # PromiseGrid
 
 PromiseGrid is a consensus-based computing, communications, and
@@ -11,7 +12,7 @@ decentralized computer.  Owned and operated by its users rather than
 any single legal entity, the grid is scalable and resilient, growing
 as users join. 
 
-This document is a high-level overview of the project.  
+This document is a high-level overview of the project.
 
 ## Why this matters
 
@@ -33,6 +34,32 @@ based on several principles from [Promise Theory](https://en.wikipedia.org/wiki/
 These principles provide a foundation for a decentralized system that
 can not only govern itself but also provide governance as a service to
 its hosted organizations and communities.
+
+Decentralization, if designed in a way that explicitly prevents ToC,
+brings several intrinsic benefits that are essential for the
+development of resilient, adaptive, and equitable systems:
+
+1. **Resiliency**: Decentralized systems distribute their operations
+   across multiple nodes or entities. This dispersion increases the
+   system's ability to withstand attacks, failures, and crises,
+   ensuring continuous operation under various conditions.
+
+2. **Crisis Preparedness and Response**: In the event of a crisis,
+   decentralized systems can adapt and respond more quickly than
+   centralized ones. Each node or entity can react based on local
+   conditions and needs, enabling a more flexible and effective
+   response to emergencies.
+
+3. **Alignment with Self-Interest**: Decentralization acknowledges the
+   reality that individuals and organizations act in their own
+   self-interest. By designing systems that expect and accommodate
+   this self-interest, we can create healthier and more robust
+   systems. It avoids the pitfalls of over-reliance on either altruism
+   or centralized control.
+
+Incorporating these principles, PromiseGrid aims to create a more
+resilient, equitable, and flexible system for computational
+governance.
 
 ## Features
 
