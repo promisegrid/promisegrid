@@ -3,4 +3,5 @@ Content-Transfer-Encoding: quoted-printable
 In: README.md
 Out: README.md
 
-In Features, add a bullet point for governance and consensus system calls
+in the Features section, add a link to each bullet point.  the link
+must refer to a sections later in the doc that supports the feature.

@@ -11,11 +11,11 @@ decentralized computer.  Owned and operated by its users rather than
 any single legal entity, the grid is scalable and resilient, growing
 as users join. 
 
-Consensus and governance mechanisms are intrinsic to the operation of
-PromiseGrid. They are implemented as basic system calls and exposed to
-higher-level code, applications, and ultimately, the users. This means
-that the same mechanisms that govern the grid can also be used to
-govern the organizations and communities that use it.
+Consensus and governance mechanisms are implemented as basic system
+calls and exposed to higher-level code, applications, and ultimately,
+the users. This means that the same mechanisms that govern the grid
+can also be used to govern the organizations and communities that use
+it.
 
 This document is a high-level overview of the project.
 
@@ -89,7 +89,8 @@ governance mechanisms.
 - The grid uses capability-based security for fine-grained access
   control.
 - The same consensus, conflict resolution, and governance mechanisms
-  that manage the grid are available to hosted applications and users.
+  (system calls) that manage the grid are available to hosted
+  applications and users.
 
 ## Technology 
 
@@ -375,4 +376,5 @@ contact Steve Traugott on
 PromiseGrid development is supported by 
 [C D International Technology, Inc.](http://www.cdint.com/) and 
 [TerraLuna, LLC](http://www.t7a.org).
+
 
