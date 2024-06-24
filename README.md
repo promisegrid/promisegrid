@@ -1,4 +1,3 @@
-markdown
 # PromiseGrid
 
 PromiseGrid is a consensus-based computing, communications, and
@@ -11,6 +10,12 @@ the Internet is a decentralized network; PromiseGrid is a
 decentralized computer.  Owned and operated by its users rather than
 any single legal entity, the grid is scalable and resilient, growing
 as users join. 
+
+Consensus and governance mechanisms are intrinsic to the operation of
+PromiseGrid. They are implemented as basic system calls and exposed to
+higher-level code, applications, and ultimately, the users. This means
+that the same mechanisms that govern the grid can also be used to
+govern the organizations and communities that use it.
 
 This document is a high-level overview of the project.
 
@@ -57,9 +62,16 @@ development of resilient, adaptive, and equitable systems:
    systems. It avoids the pitfalls of over-reliance on either altruism
    or centralized control.
 
-Incorporating these principles, PromiseGrid aims to create a more
-resilient, equitable, and flexible system for computational
-governance.
+PromiseGrid implements "computational governance":  This term refers
+to the use of computer-based systems and algorithms to facilitate and
+automate decision-making processes and governance structures. This
+enables more efficient, transparent, and participatory forms of
+governance within organizations, networks, and broader society.
+Through computational governance, tasks such as consensus finding,
+resource allocation, and policy enforcement can be implemented in a
+decentralized and programmatic fashion, reducing the need for
+buraucracy while improving the scalability and adaptability of
+governance mechanisms.
 
 ## Features
 
@@ -363,5 +375,4 @@ contact Steve Traugott on
 PromiseGrid development is supported by 
 [C D International Technology, Inc.](http://www.cdint.com/) and 
 [TerraLuna, LLC](http://www.t7a.org).
-
 
