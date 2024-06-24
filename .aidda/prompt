@@ -3,4 +3,13 @@ Content-Transfer-Encoding: quoted-printable
 In: README.md
 Out: README.md
 
-* describe how the mechanisms of consensus and governance are available as basic system calls and are exposed to higher-level code, apps, and users
+insert where appropriate:  "Consensus and governance mechanisms are
+intrinsic to the operation of PromiseGrid. They are implemented as
+basic system calls, which are exposed to higher-level code,
+applications, and ultimately, the users. This means that the same
+mechanisms that govern the grid can also be used to govern the
+organizations and communities that use it."
+
+
+define "computational governance"
+
