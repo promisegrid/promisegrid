@@ -188,18 +188,27 @@ governance mechanisms.
 
 ## Architecture
 
-PromiseGrid takes advantage of the WebAssembly virtual machine that is
-now in all major browsers.  The core PromiseGrid code operates as a
-decentralized kernel and presents syscall-like services to WASM
-modules, acting as a WebAssembly System Interface (WASI) target.
+The core PromiseGrid code operates as a decentralized kernel and
+presents syscall-like services to applications.  It acts as a "sandbox
+orchestrator", regardless of the sandbox technology employed; the grid supports
+container, VM, WASM, or bare metal environments.
 
-The kernel also runs natively on server nodes, also via WASI, and can
-be used to run applications from the command line or as daemons.
+For WASM, for example, the grid takes advantage of the WebAssembly
+virtual machine now in all major browsers, offering services to WASM
+modules. The kernel also runs natively on server nodes and can be used
+to run applications from the command line or as daemons.
 
 The grid can execute containerized applications, either within WASI as
-a machine emulater (e.g.
+a machine emulator (e.g.,
 [container2wasm](https://github.com/ktock/container2wasm)) or natively
-as a container orchestrator.
+as a container orchestrator similar to Kubernetes or Docker Swarm.
+
+For bare-metal applications, the grid can manage the deployment of
+disk images and configuration files to servers, and can manage the
+execution of applications on those servers -- a bare-metal server is
+jsut another "sandbox".  This allows the grid to be used for
+configuration management, following DevOps and Infrastructure as Code
+(IoC) principles.
 
 ### Content-addressable Code
 
