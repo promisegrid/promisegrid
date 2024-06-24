@@ -12,7 +12,7 @@ any single legal entity, the grid is scalable and resilient, growing
 as users join. 
 
 Consensus and governance mechanisms are implemented as basic system
-calls and exposed to higher-level code, applications, and ultimately,
+calls and exposed to higher-level code, applications, and ultimately
 the users. This means that the same mechanisms that govern the grid
 can also be used to govern the organizations and communities that use
 it.
