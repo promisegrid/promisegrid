@@ -3,5 +3,6 @@ Content-Transfer-Encoding: quoted-printable
 In: README.md
 Out: README.md
 
-in the Features section, add a link to each bullet point.  the link
-must refer to a sections later in the doc that supports the feature.
+in Architecture, clarify that PromiseGrid is a sandbox
+orchestrator, regardless of sandbox technology (container, WASM,
+VM, bare metal, etc.)

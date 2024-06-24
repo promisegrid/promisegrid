@@ -94,6 +94,8 @@ governance mechanisms.
 
 ## Technology 
 
+### Prior art
+
 - [WebAssembly](https://webassembly.org/) (WASM)
 - [WebAssembly System Interface](https://wasi.dev/) (WASI)
 - [Large language models](https://en.wikipedia.org/wiki/Large_language_model) (LLMs)
@@ -102,6 +104,9 @@ governance mechanisms.
 - [Capability-based security](https://en.wikipedia.org/wiki/Capability-based_security)
 - [Promise Theory](https://en.wikipedia.org/wiki/Promise_theory)
 - [Content-addressable storage](https://en.wikipedia.org/wiki/Content-addressable_storage)
+
+### PromiseGrid-specific concepts
+
 - [Content-addressable code](#content-addressable-code)
 - [Capability-as-Promise Model](#capability-as-promise-model)
 - [PromiseGrid Universal Protocol](#promisegrid-universal-protocol)
@@ -151,7 +156,7 @@ governance mechanisms.
         - [ ] Event scheduling/management
         - [ ] Virtual world
         - [ ] Membership management
-    - [ ] Enterprise Resource Planning (MRP)
+    - [ ] Enterprise Resource Planning (ERP)
         - [ ] Inventory management
         - [ ] Project and task management
         - [ ] Bill of materials
