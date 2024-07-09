@@ -1,9 +1,12 @@
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In: README.md, .aidda/advice.md
+In: README.md
 Out: README.md
 
 "computational governance" section is too long and in an awkward
-place.  implement the recommendations in advice.md.
+place.  shorten that paragraph, move it to a better location, and
+include a sentence something like "It does this by following
+algorithms set by its community to automatically manage and distribute
+resources, ensuring efficient and equitable use." -- but shorter.
  
 

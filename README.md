@@ -394,4 +394,3 @@ contact Steve Traugott on
 PromiseGrid development is supported by 
 [C D International Technology, Inc.](http://www.cdint.com/) and 
 [TerraLuna, LLC](http://www.t7a.org).
-
