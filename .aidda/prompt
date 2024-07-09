@@ -1,9 +1,9 @@
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In: README.md
-Out: .aidda/advice.md
+In: README.md, .aidda/advice.md
+Out: README.md
 
 "computational governance" section is too long and in an awkward
-place.  recommend better wording and location.
+place.  implement the recommendations in advice.md.
  
 
