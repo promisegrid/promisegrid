@@ -3,7 +3,7 @@
 PromiseGrid is a consensus-based computing, communications, and
 governance system.  It's designed specifically to address the problems
 of collaborative work and leadership that plague organizations and
-communities, including non-profits, corporations, and governments.
+communities, including non-profits and businesses.
 
 PromiseGrid is to computation what the Internet is to communication --
 the Internet is a decentralized network; PromiseGrid is a
@@ -33,45 +33,7 @@ spoiling that resource through their collective action.  The resource
 in question may be the well-being of the organization or community as
 a whole, or it may be a shared physical, natural, or digital resource.
 
-PromiseGrid addresses ToC by providing an equitable platform for
-collaboration and shared resource management. The grid's design is
-based on several principles from [Promise Theory](https://en.wikipedia.org/wiki/Promise_theory) by Mark Burgess.
-These principles provide a foundation for a decentralized system that
-can not only govern itself but also provide governance as a service to
-its hosted organizations and communities.
-
-Decentralization, if designed in a way that explicitly prevents ToC,
-brings several intrinsic benefits that are essential for the
-development of resilient, adaptive, and equitable systems:
-
-1. **Resiliency**: Decentralized systems distribute their operations
-   across multiple nodes or entities. This dispersion increases the
-   system's ability to withstand attacks, failures, and crises,
-   ensuring continuous operation under various conditions.
-
-2. **Crisis Preparedness and Response**: In the event of a crisis,
-   decentralized systems can adapt and respond more quickly than
-   centralized ones. Each node or entity can react based on local
-   conditions and needs, enabling a more flexible and effective
-   response to emergencies.
-
-3. **Alignment with Self-Interest**: Decentralization acknowledges the
-   reality that individuals and organizations act in their own
-   self-interest. By designing systems that expect and accommodate
-   this self-interest, we can create healthier and more robust
-   systems. It avoids the pitfalls of over-reliance on either altruism
-   or centralized control.
-
-PromiseGrid implements "computational governance":  This term refers
-to the use of computer-based systems and algorithms to facilitate and
-automate decision-making processes and governance structures. This
-enables more efficient, transparent, and participatory forms of
-governance within organizations, networks, and broader society.
-Through computational governance, tasks such as consensus finding,
-resource allocation, and policy enforcement can be implemented in a
-decentralized and programmatic fashion, reducing the need for
-bureaucracy while improving the scalability and adaptability of
-governance mechanisms.
+PromiseGrid addresses ToC by automating resource management and governance, ensuring efficient and equitable use. It leverages algorithms set by its community for this autonomous operation.
 
 ## Features
 
@@ -112,6 +74,9 @@ governance mechanisms.
 - [PromiseGrid Universal Protocol](#promisegrid-universal-protocol)
 - [Merge-as-consensus Model](#merge-as-consensus-model)
 - [Decentralized cache](#decentralized-cache)
+
+## Computational Governance
+PromiseGrid implements computational governance by integrating computer-based systems and algorithms to automate and facilitate decision-making and governance. This mechanism makes governance more efficient, transparent, and participatory within organizations and broader society.
 
 ## Milestones
 
