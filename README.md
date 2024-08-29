@@ -18,6 +18,8 @@ can also be used to govern the organizations and communities that use
 it.
 
 This document is a high-level overview of the project.
+Proof-of-concept code is coming together at
+[github.com/stevegt/grid-cli](https://github.com/stevegt/grid-cli).
 
 ## Why this matters
 
