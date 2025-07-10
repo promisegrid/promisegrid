@@ -100,6 +100,7 @@ PromiseGrid implements computational governance by integrating computer-based sy
     - [x]  Internet of Production [IoP](http://www.internetofproduction.org/)
     - [ ]  [Worknetting](https://en.wikipedia.org/wiki/Worknet) community
     - [ ]  [Mark Burgess](http://markburgess.org/)
+    - [ ]  [Alva Couch](https://engineering.tufts.edu/cs/people/faculty/alva-couch)
     - [ ] ...
 - [x] Write LLM-based bootstrap tooling
     - [x]  [Grokker](http://github.com/stevegt/grokker)
