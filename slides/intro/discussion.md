@@ -263,3 +263,89 @@ I need to maintain the remark.js format and make sure the file is complete.
 
 ---
 
+
+
+**rename the 'core features' slide to 'user-visible features', add a 'admin-visibile features' slide emphasizing benefits for devops and infrastructure management
+
+add a org features slide emphasizing benefits to organizations
+
+add https://github.com/promisegrid/grid-poc
+https://github.com/stevegt/promisebase
+https://github.com/computerscienceiscool/collab-editor to current work slide
+
+invert the diagram on 'Architecture Overview' slide so the kernel is at the bottom
+
+add a slide with a diagram showing multiple nodes, each with their own kernel, communicating
+
+use CIDs (based on multihash, also used by IPFS and Bluesky) instead of raw multihash**
+
+
+
+
+# PromiseGrid Remark.js Slide Deck - Updated
+
+I am modifying the slide deck to include user-visible features, admin-visible features, organizational benefits, additional GitHub projects, improved network architecture diagrams, and CID references.
+
+
+## References
+
+- [1] [https://fleek.xyz/blog/learn/understanding-content-identifiers-ipfs-onchain-hosting-and-storage/](https://fleek.xyz/blog/learn/understanding-content-identifiers-ipfs-onchain-hosting-and-storage/)
+- [2] [https://bsky.app/profile/chrismcleod.dev/post/3lbnpmif3a22w](https://bsky.app/profile/chrismcleod.dev/post/3lbnpmif3a22w)
+- [3] [https://filebase.com/blog/what-is-an-ipfs-cid/](https://filebase.com/blog/what-is-an-ipfs-cid/)
+- [4] [https://pinata.cloud/blog/what-is-an-ipfs-cid/](https://pinata.cloud/blog/what-is-an-ipfs-cid/)
+- [5] [https://atproto.blue/en/latest/atproto_core/cid.html](https://atproto.blue/en/latest/atproto_core/cid.html)
+- [6] [https://proto.school/anatomy-of-a-cid/04/](https://proto.school/anatomy-of-a-cid/04/)
+- [7] [https://proto.school/anatomy-of-a-cid/02/](https://proto.school/anatomy-of-a-cid/02/)
+- [8] [https://discuss.ipfs.tech/t/cid-concept-is-broken/9733](https://discuss.ipfs.tech/t/cid-concept-is-broken/9733)
+- [9] [https://docs.desci.com/create-and-publish/share/content-identifier-cid](https://docs.desci.com/create-and-publish/share/content-identifier-cid)
+- [10] [https://www.auvik.com/franklyit/blog/effective-network-diagrams/](https://www.auvik.com/franklyit/blog/effective-network-diagrams/)
+- [11] [https://www.geeksforgeeks.org/computer-networks/architecture-styles-in-distributed-systems/](https://www.geeksforgeeks.org/computer-networks/architecture-styles-in-distributed-systems/)
+- [12] [https://www.geeksforgeeks.org/system-design/peer-to-peer-p2p-architecture/](https://www.geeksforgeeks.org/system-design/peer-to-peer-p2p-architecture/)
+- [13] [https://en.wikipedia.org/wiki/Peer-to-peer](https://en.wikipedia.org/wiki/Peer-to-peer)
+- [14] [https://www.salesforce.com/platform/devops-tools/what-is-devops/benefits/](https://www.salesforce.com/platform/devops-tools/what-is-devops/benefits/)
+- [15] [https://www.zenarmor.com/docs/network-basics/what-is-distributed-computing](https://www.zenarmor.com/docs/network-basics/what-is-distributed-computing)
+- [16] [https://www.geeksforgeeks.org/system-design/enterprise-architecture-vs-distributed-system/](https://www.geeksforgeeks.org/system-design/enterprise-architecture-vs-distributed-system/)
+- [17] [https://www.planview.com/resources/articles/the-benefits-of-devops-how-a-devops-strategy-drives-innovation-and-efficiency/](https://www.planview.com/resources/articles/the-benefits-of-devops-how-a-devops-strategy-drives-innovation-and-efficiency/)
+- [18] [https://opsmatters.com/posts/benefits-distributed-computing-systems-modern-day-tech-businesses](https://opsmatters.com/posts/benefits-distributed-computing-systems-modern-day-tech-businesses)
+- [19] [https://github.com/gnab/remark](https://github.com/gnab/remark)
+
+
+
+## Reasoning
+
+The user is asking me to modify the remark.js slide deck with several changes:
+
+1. Rename 'core features' slide to 'user-visible features'
+2. Add a 'admin-visible features' slide emphasizing benefits for devops and infrastructure management
+3. Add an 'org features' slide emphasizing benefits to organizations
+4. Add three GitHub URLs to current work slide:
+   - https://github.com/promisegrid/grid-poc
+   - https://github.com/stevegt/promisebase
+   - https://github.com/computerscienceiscool/collab-editor
+5. Invert the diagram on 'Architecture Overview' slide so the kernel is at the bottom
+6. Add a slide with a diagram showing multiple nodes, each with their own kernel, communicating
+7. Use CIDs (based on multihash) instead of raw multihash
+8. Limit response to 100 words
+
+However, the personalization instructions say I must return complete files in the specified format. A 100-word limit conflicts with returning a complete slide deck file. I need to:
+
+1. Focus on the file content (complete README.md)
+2. Ignore the 100-word limit since it conflicts with the requirement to return complete files
+3. Make all the requested modifications
+
+Let me go through the changes:
+
+1. "Core Features" → "User-Visible Features": Rename the slide
+2. Add new "Admin-Visible Features" slide with DevOps benefits
+3. Add new "Organizational Features" slide
+4. Update "Current Work" slide with the three new GitHub URLs
+5. Invert the Architecture Overview diagram (kernel at bottom)
+6. Add new slide showing multiple communicating nodes with their own kernels
+7. Update references to CIDs instead of multihash
+8. Keep the file complete
+
+Let me create the modified slide deck:
+
+
+---
+

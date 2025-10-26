@@ -8,7 +8,6 @@ class: center, middle, inverse
 
 ---
 
-
 ## What is PromiseGrid?
 
 PromiseGrid is a **decentralized computer** — to computation what the Internet is to communication.
@@ -33,34 +32,87 @@ Individual users acting in self-interest can collectively harm shared resources.
 - Digital resources  
 - Community trust
 
-**PromiseGrid solution:** Automate resource management using community-defined algorithms.
+**PromiseGrid solution:** Automate resource management using community-defined algorithms to align individual incentives with collective good.
 
 ---
 
-## Core Features
+## User-Visible Features
 
 .left-column[
-### Ownership
-- Users own nodes
-- No centralized hosting
-
-### Flexibility
-- Browser tabs
-- Mobile phones
+### Accessibility
+- Run in browser tabs
+- Mobile devices
 - Raspberry Pi
 - Command line
+- URL-loaded apps
+
+### Control
+- Choose your software version
+- Own your node
+- No forced upgrades
 ]
 
 .right-column[
-### Resilience
-- Grid survives node failures
-- Decentralized operation
-- Content replication
+### Composability
+- Mixed-language modules
+- Modular applications
+- Reusable libraries
+- Plugin architecture
 
-### Security
-- Capability-based access
-- Fine-grained control
-- Cryptographic integrity
+### Reliability
+- Grid survives failures
+- Data replication
+- Automatic fallback
+- Decentralized operation
+]
+
+---
+
+## Admin-Visible Features
+
+### Infrastructure Management & DevOps Benefits
+
+.left-column[
+### Operational Excellence
+- **Zero centralized hosting costs** — each org runs own nodes
+- **Automatic scaling** — grid grows with demand
+- **Self-healing infrastructure** — nodes rejoin seamlessly
+- **Cross-organization resource sharing** — efficient utilization
+- **Infrastructure as Code** — declarative config management
+]
+
+.right-column[
+### DevOps Integration
+- **Bare-metal orchestration** — disk image + config management
+- **Container support** — Docker/OCI integration
+- **CI/CD automation** — built-in deployment pipelines
+- **Observability** — capability graph tracking
+- **Disaster recovery** — automated replication and backup
+- **Multi-environment consistency** — VMs, containers, WASM, bare-metal
+]
+
+---
+
+## Organizational Features
+
+### Benefits to Organizations & Communities
+
+.left-column[
+### Autonomy & Sovereignty
+- **Independent operation** — no vendor lock-in
+- **Data ownership** — complete control of assets
+- **Governance control** — define your own rules
+- **Supply chain resilience** — decentralized participation
+- **Regulatory compliance** — no middleman data sharing
+]
+
+.right-column[
+### Collaboration & Scale
+- **Multi-org federation** — coordinate without centralization
+- **Reduced costs** — no SaaS subscriptions
+- **Faster innovation** — deploy directly to grid
+- **Democratic governance** — built-in consensus mechanisms
+- **Community preservation** — content persists independently
 ]
 
 ---
@@ -68,33 +120,78 @@ Individual users acting in self-interest can collectively harm shared resources.
 ## Architecture Overview
 
 ```
-┌─────────────────────────────────────┐
-│     PromiseGrid Kernel              │
-│  (Decentralized, Syscall-like)      │
-└──────────┬──────────────────────────┘
-           │
-    ┌──────┴──────┬──────────┬────────┐
-    │             │          │        │
-  WASM       Containers    VMs    Bare-metal
- (Browser)   (Docker)   (KVM/VirtualBox)  (Physical)
+           ┌─────────────────────────────────────┐
+           │         Applications Layer          │
+           │  (Modules, Services, Containers)    │
+           └──────────────────┬──────────────────┘
+                              │
+                    ┌─────────┴─────────┐
+                    │                   │
+             WASM Runtime         Other Runtimes
+            (Browser/CLI)        (VM, Container)
+                    |                   │
+                    └─────────┬─────────┘
+                              │
+                ┌─────────────┴─────────────┐
+                │                           │
+                │  PromiseGrid Kernel       │
+                │  (Syscall-like services)  │
+                │                           │
+                └───────────────────────────┘
 ```
 
-The kernel acts as a sandbox orchestrator, managing execution across multiple environments while maintaining a unified security and governance model.
+The kernel abstracts away underlying infrastructure while providing unified security, consensus, and governance services.
 
 ---
 
-## Content-Addressable Code
+## Distributed Grid Architecture
 
-Every piece of code and data is addressed by its **cryptographic hash**, not location or name.
+Multiple autonomous nodes, each running their own kernel instance, forming a coordinated decentralized network:
+
+```
+    ┌──────────────┐          ┌──────────────┐
+    │    Node A    │          │    Node B    │
+    │  ┌────────┐  │          │  ┌────────┐  │
+    │  │ Kernel │◄─┼──────────┼─►│ Kernel │  │
+    │  └────────┘  │          │  └────────┘  │
+    │  Apps/Data   │          │  Apps/Data   │
+    └──────────────┘          └──────────────┘
+            ▲                          ▲
+            │                          │
+            └──────────────┬───────────┘
+                           │
+                    ┌──────────────┐
+                    │   Node C     │
+                    │  ┌────────┐  │
+                    │  │ Kernel │  │
+                    │  └────────┘  │
+                    │  Apps/Data   │
+                    └──────────────┘
+
+Messages flow between nodes via capability tokens
+Each node maintains its own cache and state
+```
+
+---
+
+## Content-Addressable Code with CIDs
+
+Every piece of code and data is addressed by its **Content Identifier (CID)**, derived from cryptographic hashing.
+
+**CID Structure (based on Multihash):**
+- **Version**: CIDv0 or CIDv1
+- **Codec**: Data format (dag-pb, raw, dag-json)
+- **Multihash**: Algorithm + hash length + hash digest
+- **Multibase**: Encoding (base58, base32, base64)
 
 **Benefits:**
+- Same standard used by **IPFS** and **Bluesky (AT Protocol)**
 - Unique, unambiguous addresses
-- Automatic deduplication
-- Global namespace
-- Unlimited storage (256/512-bit hashes)
+- Future-proof hash algorithm agility
+- Automatic deduplication  
 - Tamper-proof integrity verification
 
-Implementation: Uses [Multiformats](https://multiformats.io/multihash/) for future-proof hash agility.
+Example CID: `bafyreigmitjgwhpx2vgrzp7knbqdu2ju5ytyibfybll7tfb7eqjqujtd3y`
 
 ---
 
@@ -103,16 +200,16 @@ Implementation: Uses [Multiformats](https://multiformats.io/multihash/) for futu
 Capabilities represent **promises** — in both the JavaScript and Promise Theory sense.
 
 ```
-Issuer → Creates closure with function hash
+Issuer → Creates closure with function hash (CID)
          ↓
-Holder → Calls closure (presents capability)
+Holder → Calls closure via CID (presents capability)
          ↓
 Issuer → Fulfills, revokes, or promises later
 ```
 
 **Key principles:**
-1. Resources cannot issue promises for other resources
-2. Autonomous parts should not impose obligations
+1. Agents can only make promises about their own behavior
+2. Agent should not impose obligations on others
 
 This design mirrors both Promise Theory and healthy organizational behavior.
 
@@ -126,7 +223,7 @@ Consensus formation mirrors version control **merge** operations.
 - Multiple participants propose versions
 - Merge function reconciles differences
 - Success: single coherent version
-- Failure: human intervention (escalate to LLM)
+- Failure: escalate to LLM, then human
 
 **Applies at all levels:**
 - Race condition resolution
@@ -138,11 +235,11 @@ Consensus formation mirrors version control **merge** operations.
 
 ## PromiseGrid Universal Protocol
 
-**Message structure:**
+**Message structure using CIDs:**
 
 ```
 ┌─────────────────────────────────────┐
-│  Capability Token (function hash)   │
+│  Capability Token (function CID)    │
 ├─────────────────────────────────────┤
 │  Payload (arguments/nested msgs)    │
 └─────────────────────────────────────┘
@@ -151,22 +248,22 @@ Consensus formation mirrors version control **merge** operations.
 **Key characteristics:**
 - No version numbers in header
 - Token doubles as protocol version
-- Supports nested messages
+- Supports nested messages and hyperkernels
+- CID-based function addressing
 - Extensible by design
-- Enables nested kernels (hyperkernels)
 
 ---
 
 ## Decentralized Cache
 
-Distributed content store using directed graph database.
+Distributed content store using directed graph database, indexed by CIDs.
 
 **How it works:**
-1. Node receives message (token + arguments)
-2. Checks local cache for token+args combination
+1. Node receives message (capability CID + arguments)
+2. Checks local cache for CID+args combination
 3. Cache hit → reply immediately  
 4. Cache miss → forward to capable nodes
-5. Receive response → cache + forward to sender
+5. Receive response → cache locally + forward to sender
 
 **Advantage:** Pure functions with referential transparency enable aggressive caching across the network.
 
@@ -178,7 +275,7 @@ Distributed content store using directed graph database.
 |-----------|-----------|
 | **Execution** | WebAssembly (WASM), containers, VMs |
 | **System Interface** | WASI (WebAssembly System Interface) |
-| **Storage** | Content-addressable with Multihash |
+| **Storage** | Content-addressable with CIDs (Multihash-based) |
 | **Security** | Capability-based access control |
 | **Consensus** | Promise Theory + Merge algorithms |
 | **Language AI** | Large language models (LLMs) |
@@ -203,7 +300,7 @@ Distributed content store using directed graph database.
 
 .pull-right[
 ### Development Tools
-- Version control
+- Version control (CID-based)
 - Collaborative editors
 - Package management
 - CI/CD pipelines
@@ -279,12 +376,13 @@ Distributed content store using directed graph database.
 
 ---
 
-## References
-
-## Current Work 
+## Current Work
 
 ### Primary Projects
 - **PromiseGrid Core:** [github.com/promisegrid/promisegrid](https://github.com/promisegrid/promisegrid)
+- **Grid POC:** [github.com/promisegrid/grid-poc](https://github.com/promisegrid/grid-poc)
+- **PromiseBase:** [github.com/stevegt/promisebase](https://github.com/stevegt/promisebase)
+- **Collab Editor:** [github.com/computerscienceiscool/collab-editor](https://github.com/computerscienceiscool/collab-editor)
 - **Grid CLI:** [github.com/stevegt/grid-cli](https://github.com/stevegt/grid-cli)
 - **Grokker (LLM Tool):** [github.com/stevegt/grokker](https://github.com/stevegt/grokker)
 - **ToyGrid (Microfrontend PoC):** [github.com/stevegt/toygrid](https://github.com/stevegt/toygrid)
@@ -299,4 +397,7 @@ Distributed content store using directed graph database.
 - Mark Burgess. [Promise Theory](https://markburgess.org/promises.html)
 - WebAssembly Foundation. [WASM Specification](https://webassembly.org/)
 - WASI Development Group. [WebAssembly System Interface](https://wasi.dev/)
+- Multiformats Project. [Multihash Specification](https://multiformats.io/multihash/)
+- Protocol Labs. [IPFS Content Addressing](https://docs.ipfs.tech/concepts/content-addressing/)
+- Bluesky Protocol. [AT Protocol CID Usage](https://atproto.blue/)
 

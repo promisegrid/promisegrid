@@ -13,7 +13,7 @@
       background: #f5f5f5;
       padding: 6px;
       display: block;
-      max-height: 300px;
+      max-height: 500px;
       overflow-y: auto;
       overflow-x: auto;
       white-space: pre;
@@ -26,6 +26,147 @@
     }
 
   </style>
+
+    <style>
+       
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      body {
+        font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+
+       
+      
+       
+
+      .title h1 { font-size: 6em; }
+      .title h2 { font-size: 4em; }
+      .title h3 { font-size: 3em; }
+      .title { font-size: 2em; }
+
+      .normal h1 { font-size: 1.9em; }
+      .normal h2 { font-size: 1.8em; }
+      .normal h3 { font-size: 1.7em; }
+      .normal { font-size: 1.6em; }
+
+      .normal li { margin-top: 0.25em; } 
+
+       
+
+       
+
+      .left-column {
+        display: grid;
+        grid-template-rows: auto minmax(0,100vh);
+        grid-gap: 1em;
+        padding: 0;
+        height: 70vh;
+        width: 40%;
+        float: left;
+      }
+
+      .right-column {
+        display: grid;
+        grid-template-rows: auto minmax(0,100vh);
+        grid-gap: 1em;
+        padding: 0;
+        height: 70vh;
+        width: 40%;
+        float: right;
+      }
+
+      .image-column {
+        display: grid;
+        grid-template-rows: minmax(0,100vh);
+        grid-gap: 1em;
+        padding: 0;
+        height: 70vh;
+        width: 80%;
+        float: right;
+      }
+      
+      .row {}
+
+      img, p {
+        object-fit: contain; 
+        max-height: 100%;
+        max-width: 100%;
+      }
+
+      .left-img {
+        position: absolute;
+        bottom: 0;
+      }
+
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+
+      .red { color: #fa0000; }
+
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+
+      .remark-code-line-highlighted     { background-color: #373832; }
+
+      .right {
+        float: right;
+        margin-left: 1em;
+      }
+
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+
+      .remark-code, .remark-inline-code { font-family: 'monospace'; }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+       
+      blockquote {
+        padding: 0 1em 0 0;
+        line-height: 0.2em;
+        color: #777;
+      }
+
+    </style>
 </head>
 <body>
   
