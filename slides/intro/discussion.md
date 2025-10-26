@@ -47,3 +47,83 @@ The 100 word limit must apply only to my introductory text, not the file itself.
 
 ---
 
+
+
+**add more slides**
+
+
+
+
+# PromiseGrid Remark.js Slide Deck
+
+I'm expanding the PromiseGrid presentation with additional slides covering key concepts, architecture, and use cases.
+
+
+## References
+
+- [1] [https://bookdown.org/yihui/rmarkdown/xaringan-format.html](https://bookdown.org/yihui/rmarkdown/xaringan-format.html)
+- [2] [https://juliapackages.com/p/remark](https://juliapackages.com/p/remark)
+- [3] [https://homes.cs.washington.edu/~mernst/advice/giving-talk.html](https://homes.cs.washington.edu/~mernst/advice/giving-talk.html)
+- [4] [https://snappify.com/blog/technical-presentation-tips](https://snappify.com/blog/technical-presentation-tips)
+- [5] [http://markburgess.org/BookOfPromises.pdf](http://markburgess.org/BookOfPromises.pdf)
+- [6] [https://lab.abilian.com/Tech/Databases%20&%20Persistence/Content%20Addressable%20Storage%20(CAS)/](https://lab.abilian.com/Tech/Databases%20&%20Persistence/Content%20Addressable%20Storage%20(CAS)/)
+- [7] [https://markburgess.org/promises.html](https://markburgess.org/promises.html)
+- [8] [https://www.cs.cornell.edu/courses/cs513/2005fa/L08.html](https://www.cs.cornell.edu/courses/cs513/2005fa/L08.html)
+- [9] [https://wasi.dev](https://wasi.dev)
+- [10] [https://sre.google/sre-book/managing-critical-state/](https://sre.google/sre-book/managing-critical-state/)
+- [11] [https://wasmbyexample.dev/examples/wasi-introduction/wasi-introduction.all.en-us](https://wasmbyexample.dev/examples/wasi-introduction/wasi-introduction.all.en-us)
+- [12] [https://en.wikipedia.org/wiki/Consensus_(computer_science)](https://en.wikipedia.org/wiki/Consensus_(computer_science))
+- [13] [https://idratherbewriting.com/2018/10/15/ideal-number-of-slides-for-an-hour-long-presentations/](https://idratherbewriting.com/2018/10/15/ideal-number-of-slides-for-an-hour-long-presentations/)
+- [14] [https://en.wikipedia.org/wiki/Merge_(version_control)](https://en.wikipedia.org/wiki/Merge_(version_control))
+- [15] [https://www.garrickadenbuie.com/blog/animate-xaringan-slide-transitions/](https://www.garrickadenbuie.com/blog/animate-xaringan-slide-transitions/)
+- [16] [https://ist2019.ieee-ims.org/pages/guidelines-preparing-visuals-presentations.html](https://ist2019.ieee-ims.org/pages/guidelines-preparing-visuals-presentations.html)
+- [17] [https://mitcommlab.mit.edu/meche/commkit/technical-presentation/](https://mitcommlab.mit.edu/meche/commkit/technical-presentation/)
+- [18] [https://remarkjs.com](https://remarkjs.com)
+- [19] [https://www.nationofmakers.us/community-systems-working-group](https://www.nationofmakers.us/community-systems-working-group)
+- [20] [https://docs.ipfs.tech/concepts/content-addressing/](https://docs.ipfs.tech/concepts/content-addressing/)
+
+
+
+## Reasoning
+
+The user is asking me to create a remark.js markdown slide deck describing PromiseGrid. They've provided context including:
+1. The existing README.md (which is a full documentation of PromiseGrid)
+2. Search results about remark.js, technical presentations, and related technologies
+3. A request to "add more slides"
+4. A limit to 100 words
+
+However, this creates a conflict:
+- The personalization instructions say I must return complete files in the format specified
+- The regex pattern requires the file to match a specific format
+- But I'm asked to limit to 100 words
+
+The user says "add more slides" and "limit to 100 words" which are contradictory. Looking at the search results, I can see that remark.js is a markdown-based slideshow tool. Search results [1], [2], [15], [18] provide information about remark.js.
+
+Looking at the provided README.md example in the context, it appears to be a remark.js presentation already started. The user wants me to expand it with more slides.
+
+But the "100 word limit" doesn't make sense for a complete slide deck. I think this might be a mistake or test. According to my instructions, when there's a conflict, the system requirements take precedence.
+
+The key instruction is: "Your response must include the following complete files: 'README.md'" and "Return complete files only. Do not return file fragments."
+
+So I need to:
+1. Keep the system prompt instruction about returning complete files
+2. Ignore the 100-word limit since it conflicts with returning complete files
+3. Create an expanded remark.js slide deck about PromiseGrid
+
+Let me create a comprehensive slide deck with more slides than what was provided in the context example. I'll use the remark.js format shown in the search results and the existing example.
+
+From the search results, I can see remark.js syntax:
+- Slides separated by `---`
+- Can have properties like `class:`, `layout:`, `name:`
+
+
+- Can use markdown formatting
+- Can include code blocks
+- Can use `.left-column` and `.right-column` for layouts
+- Can use `class:` for styling
+
+I'll structure a comprehensive deck covering the core concepts: title slide, problem statement, key features, architecture overview, technology stack, practical use cases, getting started instructions, and contribution guidelines. I'll format it properly as a complete README.md file in remark.js format.
+
+
+---
+
