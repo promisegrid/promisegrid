@@ -6,9 +6,8 @@ class: center, middle, inverse
 
 *Consensus-based computing, communications, and governance*
 
-.footnote[[github.com/stevegt/grid-cli](https://github.com/stevegt/grid-cli)]
-
 ---
+
 
 ## What is PromiseGrid?
 
@@ -30,10 +29,11 @@ Individual users acting in self-interest can collectively harm shared resources.
 **Resource types affected:**
 - Organization well-being
 - Physical resources
+- Global resources
 - Digital resources  
 - Community trust
 
-**PromiseGrid solution:** Automate resource management and governance using community-defined algorithms.
+**PromiseGrid solution:** Automate resource management using community-defined algorithms.
 
 ---
 
@@ -279,11 +279,24 @@ Distributed content store using directed graph database.
 
 ---
 
-class: center, middle, inverse
+## References
 
-# The Future is Decentralized
+## Current Work 
 
-**PromiseGrid: Computing for autonomous, collaborative systems**
+### Primary Projects
+- **PromiseGrid Core:** [github.com/promisegrid/promisegrid](https://github.com/promisegrid/promisegrid)
+- **Grid CLI:** [github.com/stevegt/grid-cli](https://github.com/stevegt/grid-cli)
+- **Grokker (LLM Tool):** [github.com/stevegt/grokker](https://github.com/stevegt/grokker)
+- **ToyGrid (Microfrontend PoC):** [github.com/stevegt/toygrid](https://github.com/stevegt/toygrid)
 
-[Learn more](https://github.com/stevegt/grid-cli)
+### Community & Governance
+- **CSWG Home:** [cswg.infrastructures.org](https://cswg.infrastructures.org)
+- **Maker Community Practices:** [mcp.infrastructures.org](https://mcp.infrastructures.org)
+- (spinoff from) **Nation of Makers:** [nationofmakers.us](https://www.nationofmakers.us/community-systems-working-group)
+
+### Related Work and Background
+
+- Mark Burgess. [Promise Theory](https://markburgess.org/promises.html)
+- WebAssembly Foundation. [WASM Specification](https://webassembly.org/)
+- WASI Development Group. [WebAssembly System Interface](https://wasi.dev/)
 
