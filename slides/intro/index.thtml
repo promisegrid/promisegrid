@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ .Title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Remark.js CSS (optional, can be customized) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remark/0.14.0/remark.min.css">
+  <style>
+    pre {
+      font-size: 12px;
+      scrollbar-width: auto;
+      background: #f5f5f5;
+      padding: 6px;
+      display: block;
+      max-height: 300px;
+      overflow-y: auto;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 8px;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- The slides content passed from the Go backend -->
+  <textarea id="source" style="display:none;">
+  </textarea>
+
+  <!-- Load remark.js from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/remark/0.14.0/remark.min.js"></script>
+  <script>
+    // Add a custom macro to resize images 
+    remark.macros.img = function (altText, width) { var url = this; return '<img alt="' +
+      altText + '" src="' + url + '" style="width: ' + width + '" />';
+    };
+    // configure remark.create() options
+    var opts = {
+          ratio: '16:9',
+          navigation: {
+            scroll: true,   // Enables scroll navigation
+            touch: true     // Enables touch navigation
+          }
+      };
+    // dynamically fetch the markdown content from README.md
+    fetch("README.md")
+      .then(response => response.text())
+      .then(text => {
+        document.getElementById('source').textContent = text;
+        remark.create(opts);
+      });
+  </script>
+  <script>
+    // Establish a websocket connection to receive reload notifications.
+    var ws = new WebSocket("ws://" + window.location.host + "/ws");
+    ws.onmessage = function(event) {
+      if (event.data === "reload") {
+        window.location.reload();
+      }
+    };
+  </script>
+</body>
+</html>
