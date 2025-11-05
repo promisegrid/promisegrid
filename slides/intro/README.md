@@ -1,4 +1,4 @@
-class: center, middle, inverse
+class: center, middle
 
 # PromiseGrid
 
@@ -14,7 +14,7 @@ PromiseGrid is a **decentralized computer** — to computation what the Internet
 
 - Owned and operated by users, not central entities
 - Scalable and resilient, growing as users join  
-- Addresses tragedy of the commons through automated governance
+- Addresses tragedy of the commons through collaborative governance
 - Built on proven technologies: WebAssembly, WASI, cryptography, LLMs
 
 Key insight: The same consensus and governance mechanisms that manage the grid can govern organizations and communities using it.
@@ -144,6 +144,171 @@ The kernel abstracts away underlying infrastructure while providing unified secu
 
 ---
 
+## Kernel Internal Architecture: PromiseBase Layers
+
+The PromiseGrid kernel is structured in three layers, with PromiseBase providing the foundation:
+
+```
+       ┌──────────────────────────────────┐
+       │    Protocol Handlers & Runtimes  │
+       │  (WASM, Containers, VMs, Bare)   │
+       └──────────────────┬───────────────┘
+                          │
+       ┌──────────────────┴───────────────┐
+       │  Dispatcher(s) & Capability Mgmt │
+       │  (Request routing, scheduling)   │
+       └──────────────────┬───────────────┘
+                          │
+       ┌──────────────────┴───────────────┐
+       │      PromiseBase                 │
+       │  (KV Store, transactions, state) │
+       └──────────────────────────────────┘
+```
+
+**PromiseBase:** Content-addressable key-value store with transactional semantics
+
+**Dispatcher:** Routes messages to handlers, manages resources, enforces capabilities
+
+**Runtimes:** Execute protocol handlers in isolated sandboxes
+
+---
+
+## PromiseBase: Key-Value Store Foundation
+
+PromiseBase provides distributed, replicated transactional key-value storage at the kernel's core.
+
+**Key Properties:**
+- **Distributed** — Data partitioned across nodes
+- **Replicated** — Fault tolerance through redundancy
+- **Transactional** — ACID semantics for consistency
+- **Content-Addressed** — Keys are CIDs (hashes of content)
+- **Pure Functional** — Referential transparency enables caching
+
+**Storage Layout:**
+```
+keys:    [CID₁][CID₂][CID₃]...[CIDₙ]
+values:  [val₁][val₂][val₃]...[valₙ]
+```
+
+**Values stored:**
+- Protocol handler code (WASM modules)
+- Application code and libraries
+- Grid configuration and metadata
+- Cached message responses
+- Capability tokens and proofs
+
+---
+
+## Dispatcher Layer: Request Routing & Scheduling
+
+The dispatcher sits above PromiseBase, routing incoming messages to appropriate handlers and managing resource allocation.
+
+**Core Responsibilities:**
+
+.left-column[
+### Message Processing
+- Parse CBOR 5-element messages
+- Validate protocol tags & CIDs
+- Extract signatures & claims
+- Verify cryptographic proofs
+]
+
+.right-column[
+### Capability Management
+- Track node capabilities
+- Enforce access control
+- Resolve handler CIDs
+- Schedule execution
+- Monitor resource budgets
+]
+
+**Dispatcher Architecture:**
+```
+Incoming Message → Validation → CID Resolution → 
+  ↓
+  Handler Dispatch → Resource Accounting → 
+  ↓
+  Response Generation → Signature → Return
+```
+
+---
+
+## Dispatcher: Inter-Function Communication
+
+The dispatcher enables efficient communication patterns between functions and nodes:
+
+**Local Execution** — Handler on same host uses shared memory or Unix sockets
+
+**Remote Invocation** — Handler on different node uses network transport
+
+**Nested Handlers** — Messages contain other messages for higher-order composition
+
+**Hybrid Selection** — Runtime auto-selects optimal communication method
+
+.smaller[
+```
+Message from A to B:
+├─ Is B on same host?
+│  ├─ Yes → Use local buffer/Unix socket (microseconds)
+│  └─ No → Serialize & network transport (milliseconds)
+└─ Is response cached?
+   ├─ Yes → Return from cache (nanoseconds)
+   └─ No → Execute & store result
+```
+]
+
+---
+
+## Runtime Layer: Execution Environments
+
+Runtimes execute protocol handler code in isolated sandboxes, sitting atop the dispatcher.
+
+**Supported Runtime Types:**
+
+| Runtime | Sandbox | Use Case | Performance |
+|---------|---------|----------|-------------|
+| **WASM** | VM | Browsers, mobile, edge | Near-native |
+| **Container** | OS processes | Complex apps, legacy code | Native |
+| **VM** | Hypervisor | Strong isolation, multi-OS | Native |
+| **Bare Metal** | Kernel namespace | Dedicated resources | Native |
+
+**Security Properties:**
+- Memory isolation (bounds checking in WASM)
+- No privileged instruction access
+- Capability-based resource access
+- Deterministic execution for verification
+
+---
+
+## Runtime Handler Execution Flow
+
+```
+Handler CID Resolved
+        │
+        ▼
+Lookup/Load in Runtime (cache or fetch from PromiseBase)
+        │
+        ▼
+Allocate Sandbox Resources (memory, CPU time, network quota)
+        │
+        ▼
+Execute Handler with Input (pure function semantics)
+        │
+        ▼
+Monitor Resource Consumption (preempt if budgets exceeded)
+        │
+        ▼
+Capture Output/Response
+        │
+        ▼
+Cache Result in PromiseBase
+        │
+        ▼
+Return to Dispatcher
+```
+
+---
+
 ## Distributed Grid Architecture
 
 Multiple autonomous nodes, each running their own kernel instance, forming a coordinated decentralized network:
@@ -168,8 +333,8 @@ Multiple autonomous nodes, each running their own kernel instance, forming a coo
                     │  Apps/Data   │
                     └──────────────┘
 
-Messages flow between nodes via capability tokens
-Each node maintains its own cache and state
+Each node: Independent kernel, replicated state, cached content
+Coordination: Capability tokens, message signatures, merge consensus
 ```
 
 ---
@@ -200,11 +365,11 @@ Example CID: `bafyreigmitjgwhpx2vgrzp7knbqdu2ju5ytyibfybll7tfb7eqjqujtd3y`
 Capabilities represent **promises** — in both the JavaScript and Promise Theory sense.
 
 ```
-Issuer → Creates closure with function hash (CID)
+Issuer → Creates CWT-based capability including function hash (CID)
          ↓
-Holder → Calls closure via CID (presents capability)
+Holder → Calls function via CID (presents capability)
          ↓
-Issuer → Fulfills, revokes, or promises later
+Issuer → Fulfills, revokes, or defers until later
 ```
 
 **Key principles:**
@@ -226,6 +391,7 @@ Consensus formation mirrors version control **merge** operations.
 - Failure: escalate to LLM, then human
 
 **Applies at all levels:**
+- Source code merges
 - Race condition resolution
 - Application data conflicts  
 - Organizational disputes
@@ -233,24 +399,129 @@ Consensus formation mirrors version control **merge** operations.
 
 ---
 
-## PromiseGrid Universal Protocol
 
-**Message structure using CIDs:**
+## Five-Element CBOR Message Structure
+
+PromiseGrid messages use a **5-element CBOR array** providing self-identification, routing, isolation, payload transport, and cryptographic verification.
 
 ```
-┌─────────────────────────────────────┐
-│  Capability Token (function CID)    │
-├─────────────────────────────────────┤
-│  Payload (arguments/nested msgs)    │
-└─────────────────────────────────────┘
+[
+  "grid",              // Protocol tag
+  protocol_cid,        // Handler routing  
+  grid_cid,            // Instance isolation
+  cwt_payload,         // Payload data
+  signature            // Cryptographic proof
+]
 ```
 
-**Key characteristics:**
-- No version numbers in header
-- Token doubles as protocol version
-- Supports nested messages and hyperkernels
-- CID-based function addressing
-- Extensible by design
+**Technologies:**
+- **CBOR** = Concise Binary Object Representation (RFC 8949)
+- **CID** = Content Identifier (based on multihash)
+- **CWT** = CBOR Web Token (RFC 8392)
+- **COSE** = Cryptographic Object Signing (RFC 8152/9052)
+
+---
+
+## Element 1: Protocol Tag
+
+```
+[ "grid", ... ]
+   ↑
+   Self-identifying protocol marker
+```
+
+**Purpose:** Immediate protocol recognition
+
+**Implementation:** UTF-8 text string "grid" (5 bytes with CBOR header)
+
+**Benefits:**
+- Fast message validation before parsing
+- Human-readable in debugging
+- Network analysis tool recognition
+- Future protocol variant support ("grid2", "grid-alt")
+
+---
+
+## Element 2: Protocol CID
+
+```
+[ "grid", protocol_cid, ... ]
+           ↑
+           Hash of protocol handler code
+```
+
+**Purpose:** Routes message to correct protocol handler
+
+**Key Properties:**
+- Content-addressed protocol implementation
+- Exact version specification (not just version numbers)
+- Automatic code distribution and caching
+- Multiple protocol versions coexist
+
+**Example:** SHA2-256 CID ≈ 34-36 bytes
+
+---
+
+## Element 3: Grid Instance CID
+
+```
+[ "grid", protocol_cid, grid_cid, ... ]
+                         ↑
+                         Network namespace identifier
+```
+
+**Purpose:** Isolates communication within specific grid instances
+
+**Enables:**
+- Multiple independent grids on shared infrastructure
+- Test/development/production separation
+- Private organizational grids
+- Industry or geographic-specific grids
+- Capability scope isolation
+
+**Security:** Cross-grid message injection prevention
+
+---
+
+## Element 4: CWT Payload
+
+```
+[ "grid", protocol_cid, grid_cid, cwt_payload, ... ]
+                                   ↑
+                                   CBOR Web Token claims
+```
+
+**Purpose:** Application-specific message content
+
+**Standard Claims:**
+- Issuer (iss), Subject (sub), Audience (aud)
+- Expiration (exp), Not-before (nbf), Issued-at (iat)
+- CWT identifier (cti)
+
+**Custom Claims:** Application-defined via IANA registry
+
+**Proof-of-Possession:** Confirmation claim (cnf) with COSE keys
+
+---
+
+## Element 5: Signature
+
+```
+[ "grid", protocol_cid, grid_cid, cwt_payload, signature ]
+                                                ↑
+                                                COSE signature structure
+```
+
+**Purpose:** Cryptographic authenticity and integrity
+
+**COSE Signature Contains:**
+- Protected headers (algorithm, countersignatures)
+- Unprotected headers (key identifier, certificates)
+- Signature value over all preceding elements
+
+**Algorithms:** ECDSA, EdDSA, RSA-PSS variants
+
+**Security:** End-to-end protection over untrusted networks
 
 ---
 
@@ -280,6 +551,93 @@ Distributed content store using directed graph database, indexed by CIDs.
 | **Consensus** | Promise Theory + Merge algorithms |
 | **Language AI** | Large language models (LLMs) |
 | **Configuration** | Infrastructure as Code (IaC) |
+
+---
+
+## Message Processing Pipeline
+
+.smaller[
+**Stage 1: Structure Validation**
+- Parse CBOR 5-element array
+- Reject malformed messages early
+
+**Stage 2: Protocol Tag Check**
+- Verify "grid" tag
+- Reject misrouted messages
+
+**Stage 3: CID Validation**
+- Extract protocol_cid and grid_cid
+- Fetch unknown handlers/configs
+
+**Stage 4: Payload Processing**
+- Decode CWT claims
+- Validate timestamps and proof-of-possession
+
+**Stage 5: Signature Verification**
+- Reconstruct Sig_structure
+- Verify cryptographic signature
+- Pass to protocol handler only on success
+]
+
+---
+## Implementation Patterns
+
+**Content-Addressable Code** — Every function has a unique CID derived from its content
+
+**Pure Functions** — Protocol handlers observe referential transparency
+
+**Nested Messages** — Messages can contain messages (higher-order functions)
+
+**Distributed Cache** — Nodes cache protocol handlers and responses
+
+**Automatic Code Distribution** — Unknown CIDs trigger content fetch
+
+**Graceful Degradation** — Legacy protocol support via CID versioning
+
+---
+
+## Distributed Network Architecture
+
+.smaller.diagram[
+```
+Node A                  Node B                  Node C
+┌────────┐             ┌────────┐             ┌────────┐
+│Protocol│             │Protocol│             │Protocol│
+│Handlers│             │Handlers│             │Handlers│
+├────────┤             ├────────┤             ├────────┤
+│ Kernel │◄────────────┤ Kernel │◄────────────┤ Kernel │
+│ Cache  │────────────►│ Cache  │────────────►│ Cache  │
+└────────┘             └────────┘             └────────┘
+    ▲                      ▲                      ▲
+    │                      │                      │
+    └──────────────────────┴──────────────────────┘
+         Content-Addressed Message Routing
+         (Each kernel validates and routes 
+          based on CIDs and capabilities)
+```
+]
+
+**Properties:** Peer-to-peer communication, distributed cache, autonomous nodes, capability-based security across boundaries
+
+---
+
+## Technology Stack
+
+**Execution Environment**
+- WebAssembly (WASM) virtual machines
+- Container orchestration support
+- Bare metal deployment capability
+
+**Data Formats**
+- CBOR (RFC 8949) - Binary encoding
+- CWT (RFC 8392) - Token structure
+- COSE (RFC 8152/9052) - Cryptography
+- CID/Multihash - Content addressing
+
+**Security**
+- Capability-based access control
+- Content-addressed code verification
+- End-to-end message signatures
 
 ---
 
@@ -344,6 +702,21 @@ Distributed content store using directed graph database, indexed by CIDs.
 
 ---
 
+## Use Cases
+
+**Community Systems** — Collaborative editing, chat, video, event scheduling
+
+**DevOps Automation** — Container orchestration, configuration management, infrastructure as code
+
+**Enterprise Applications** — ERP, inventory, project management, accounting
+
+**Version Control** — Distributed repositories with issue tracking and code review
+
+**Governance** — Organizational decision-making using consensus mechanisms
+
+**Resource Management** — Preventing tragedy of commons in shared systems
+
+---
 ## Why PromiseGrid Matters
 
 **Problem:** Centralized systems create single points of failure and concentrations of power.
@@ -400,287 +773,6 @@ Distributed content store using directed graph database, indexed by CIDs.
 - Multiformats Project. [Multihash Specification](https://multiformats.io/multihash/)
 - Protocol Labs. [IPFS Content Addressing](https://docs.ipfs.tech/concepts/content-addressing/)
 - Bluesky Protocol. [AT Protocol CID Usage](https://atproto.blue/)
-
----
-
-## Message Structure Overview
-
-PromiseGrid messages use a **5-element CBOR array** providing self-identification, routing, isolation, payload transport, and cryptographic verification.
-
-.diagram[
-```
-[
-  "grid",              // Protocol tag
-  protocol_cid,        // Handler routing  
-  grid_cid,            // Instance isolation
-  cwt_payload,         // Payload data
-  signature            // Cryptographic proof
-]
-```
-]
-
-**CBOR** = Concise Binary Object Representation (RFC 8949)
-**CID** = Content Identifier (based on multihash)
-**CWT** = CBOR Web Token (RFC 8392)
-
----
-
-## Element 1: Protocol Tag
-
-.diagram[
-```
-[ "grid", ... ]
-   ↑
-   Self-identifying protocol marker
-```
-]
-
-**Purpose:** Immediate protocol recognition
-
-**Implementation:** UTF-8 text string "grid" (5 bytes with CBOR header)
-
-**Benefits:**
-- Fast message validation before parsing
-- Human-readable in debugging
-- Network analysis tool recognition
-- Future protocol variant support ("grid2", "grid-alt")
-
----
-
-## Element 2: Protocol CID
-
-.diagram[
-```
-[ "grid", protocol_cid, ... ]
-           ↑
-           Hash of protocol handler code
-```
-]
-
-**Purpose:** Routes message to correct protocol handler
-
-**Key Properties:**
-- Content-addressed protocol implementation
-- Exact version specification (not just version numbers)
-- Automatic code distribution and caching
-- Multiple protocol versions coexist
-
-**Example:** SHA2-256 CID ≈ 34-36 bytes
-
----
-
-## Element 3: Grid Instance CID
-
-.diagram[
-```
-[ "grid", protocol_cid, grid_cid, ... ]
-                         ↑
-                         Network namespace identifier
-```
-]
-
-**Purpose:** Isolates communication within specific grid instances
-
-**Enables:**
-- Multiple independent grids on shared infrastructure
-- Test/development/production separation
-- Private organizational grids
-- Industry or geographic-specific grids
-- Capability scope isolation
-
-**Security:** Cross-grid message injection prevention
-
----
-
-## Element 4: CWT Payload
-
-.diagram[
-```
-[ "grid", protocol_cid, grid_cid, cwt_payload, ... ]
-                                   ↑
-                                   CBOR Web Token claims
-```
-]
-
-**Purpose:** Application-specific message content
-
-**Standard Claims:**
-- Issuer (iss), Subject (sub), Audience (aud)
-- Expiration (exp), Not-before (nbf), Issued-at (iat)
-- CWT identifier (cti)
-
-**Custom Claims:** Application-defined via IANA registry
-
-**Proof-of-Possession:** Confirmation claim (cnf) with COSE keys
-
----
-
-## Element 5: Signature
-
-.diagram[
-```
-[ "grid", protocol_cid, grid_cid, cwt_payload, signature ]
-                                                ↑
-                                                COSE signature structure
-```
-]
-
-**Purpose:** Cryptographic authenticity and integrity
-
-**COSE Signature Contains:**
-- Protected headers (algorithm, countersignatures)
-- Unprotected headers (key identifier, certificates)
-- Signature value over all preceding elements
-
-**Algorithms:** ECDSA, EdDSA, RSA-PSS variants
-
-**Security:** End-to-end protection over untrusted networks
-
----
-
-## Message Security Properties
-
-**Multi-Layer Defense:**
-
-**Protocol/Instance Isolation** — Tags and CIDs prevent context confusion
-
-**Version Verification** — Protocol CID ensures compatible implementations
-
-**Authentication** — CWT claims prove sender identity
-
-**Integrity** — COSE signatures detect tampering
-
-**Replay Prevention** — Timestamp and nonce claims
-
-**Proof-of-Possession** — Confirmation claims prove key ownership
-
----
-
-## Message Processing Pipeline
-
-.smaller[
-**Stage 1: Structure Validation**
-- Parse CBOR 5-element array
-- Reject malformed messages early
-
-**Stage 2: Protocol Tag Check**
-- Verify "grid" tag
-- Reject misrouted messages
-
-**Stage 3: CID Validation**
-- Extract protocol_cid and grid_cid
-- Fetch unknown handlers/configs
-
-**Stage 4: Payload Processing**
-- Decode CWT claims
-- Validate timestamps and proof-of-possession
-
-**Stage 5: Signature Verification**
-- Reconstruct Sig_structure
-- Verify cryptographic signature
-- Pass to protocol handler only on success
-]
-
----
-
-## Architecture Overview
-
-.diagram[
-```
-        Application Layer
-        -----------------
-        Pure Functions
-        (Protocol Handlers)
-               |
-        Kernel Layer
-        ---------------
-        Message Routing
-        Capability Management
-        Cache Coordination
-               |
-        Network Layer
-        --------------
-        TCP/UDP/QUIC/WebSocket
-        Content Distribution
-```
-]
-
----
-
-## Distributed Network Architecture
-
-.smaller.diagram[
-```
-Node A                  Node B                  Node C
-┌────────┐             ┌────────┐             ┌────────┐
-│Protocol│             │Protocol│             │Protocol│
-│Handlers│             │Handlers│             │Handlers│
-├────────┤             ├────────┤             ├────────┤
-│ Kernel │◄────────────┤ Kernel │◄────────────┤ Kernel │
-│ Cache  │────────────►│ Cache  │────────────►│ Cache  │
-└────────┘             └────────┘             └────────┘
-    ▲                      ▲                      ▲
-    │                      │                      │
-    └──────────────────────┴──────────────────────┘
-         Content-Addressed Message Routing
-         (Each kernel validates and routes 
-          based on CIDs and capabilities)
-```
-]
-
-**Properties:** Peer-to-peer communication, distributed cache, autonomous nodes, capability-based security across boundaries
-
----
-
-## Technology Stack
-
-**Execution Environment**
-- WebAssembly (WASM) virtual machines
-- Container orchestration support
-- Bare metal deployment capability
-
-**Data Formats**
-- CBOR (RFC 8949) - Binary encoding
-- CWT (RFC 8392) - Token structure
-- COSE (RFC 8152/9052) - Cryptography
-- CID/Multihash - Content addressing
-
-**Security**
-- Capability-based access control
-- Content-addressed code verification
-- End-to-end message signatures
-
----
-
-## Implementation Patterns
-
-**Content-Addressable Code** — Every function has a unique CID derived from its content
-
-**Pure Functions** — Protocol handlers observe referential transparency
-
-**Nested Messages** — Messages can contain messages (higher-order functions)
-
-**Distributed Cache** — Nodes cache protocol handlers and responses
-
-**Automatic Code Distribution** — Unknown CIDs trigger content fetch
-
-**Graceful Degradation** — Legacy protocol support via CID versioning
-
----
-
-## Use Cases
-
-**Community Systems** — Collaborative editing, chat, video, event scheduling
-
-**DevOps Automation** — Container orchestration, configuration management, infrastructure as code
-
-**Enterprise Applications** — ERP, inventory, project management, accounting
-
-**Version Control** — Distributed repositories with issue tracking and code review
-
-**Governance** — Organizational decision-making using consensus mechanisms
-
-**Resource Management** — Preventing tragedy of commons in shared systems
 
 ---
 
@@ -741,4 +833,10 @@ class: center, middle
 - Harvard Business School: Sustainability Issues
 - NCBI: Climate Change as Commons Problem
 - Dummies.com: Ten Real-Life Examples
+
+**Kernel Architecture**
+- SPIN: Extensible Microkernel for Application-specific Operating Systems
+- Windows Kernel Architecture
+- CWASI: WebAssembly Runtime Shim for Inter-function Communication
 ]
+

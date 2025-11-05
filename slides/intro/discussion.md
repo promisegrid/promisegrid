@@ -727,3 +727,71 @@ I'll prioritize delivering the complete file and create a focused remark.js slid
 
 ---
 
+
+
+**add a slide showing the kernel internal architecture, with a kv store as the bottom layer of promisebase, then the dispatcher(s) above promisebase, and runtimes on top.**
+
+
+
+
+
+## References
+
+- [1] [https://planet.kernel.org](https://planet.kernel.org)
+- [2] [https://github.com/BackdoorTech/Beast-ORM](https://github.com/BackdoorTech/Beast-ORM)
+- [3] [https://arxiv.org/html/2504.21503v1](https://arxiv.org/html/2504.21503v1)
+- [4] [https://madoc.bib.uni-mannheim.de/61575/1/Dissertation_Breitbach.pdf](https://madoc.bib.uni-mannheim.de/61575/1/Dissertation_Breitbach.pdf)
+- [5] [https://dev.to/en3sis/advanced-discord-js-cache-apis-requests-with-redis-4d8a](https://dev.to/en3sis/advanced-discord-js-cache-apis-requests-with-redis-4d8a)
+- [6] [https://arxiv.org/html/2404.12621v1](https://arxiv.org/html/2404.12621v1)
+- [7] [https://aws.plainenglish.io/understanding-web-assembly-architecture-d65549e58014](https://aws.plainenglish.io/understanding-web-assembly-architecture-d65549e58014)
+- [8] [https://www.cs.cornell.edu/people/egs/papers/spin-tr94-03-03.pdf](https://www.cs.cornell.edu/people/egs/papers/spin-tr94-03-03.pdf)
+- [9] [https://www.cockroachlabs.com/blog/distributed-sql-key-value-store/](https://www.cockroachlabs.com/blog/distributed-sql-key-value-store/)
+- [10] [https://anil.recoil.org/notes/wasm-on-exotic-targets](https://anil.recoil.org/notes/wasm-on-exotic-targets)
+- [11] [https://www.mindinventory.com/blog/software-architecture-patterns/](https://www.mindinventory.com/blog/software-architecture-patterns/)
+- [12] [https://www.influxdata.com/key-value-database/](https://www.influxdata.com/key-value-database/)
+- [13] [https://remarkjs.com](https://remarkjs.com)
+- [14] [https://asciidiagrams.github.io](https://asciidiagrams.github.io)
+- [15] [https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/introduction-to-kernel-dispatcher-objects](https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/introduction-to-kernel-dispatcher-objects)
+- [16] [https://github.com/gnab/remark](https://github.com/gnab/remark)
+- [17] [https://dojofive.com/blog/document-system-architecture-ascii-doctor/](https://dojofive.com/blog/document-system-architecture-ascii-doctor/)
+- [18] [https://www.cs.fsu.edu/~zwang/files/cop4610/Fall2016/windows.pdf](https://www.cs.fsu.edu/~zwang/files/cop4610/Fall2016/windows.pdf)
+
+
+
+## Reasoning
+
+The user is asking me to add a slide showing the kernel internal architecture, with a kv store as the bottom layer of promisebase, then the dispatcher(s) above promisebase, and runtimes on top.
+
+Looking at the current slide deck (README.md), I can see there's an "Architecture Overview" slide that shows:
+- Applications Layer
+- WASM Runtime / Other Runtimes
+- Kernel Layer
+- Network Layer
+
+The user wants me to add or fix slides about the message structure, and specifically add a slide showing the kernel internal architecture with:
+1. KV store (bottom layer) - in promisebase
+2. Dispatcher(s) - above promisebase
+3. Runtimes - on top
+
+This is a more detailed internal architecture diagram focusing on promisebase.
+
+Looking at the search results, I see references to:
+- CWASI (Request Dispatcher for WebAssembly runtime)
+- SPIN (microkernel with event dispatch)
+- Windows kernel architecture (Kernel layer abstracts CPU, Executive layer with various managers)
+- Distributed KV stores and key-value architectures
+
+The user wants me to return a complete README.md file in the specified format with FILE-START and FILE-END markers.
+
+The 100-word limit conflicts with returning a complete file, so I'll prioritize the complete file requirement.
+
+Let me add slides specifically addressing:
+1. The promisebase architecture with KV store foundation
+2. The dispatcher layer
+3. The runtime layer on top
+
+I'll add these slides before or after the existing "Architecture Overview" slide to provide more detail about the internal structure.
+
+
+---
+
