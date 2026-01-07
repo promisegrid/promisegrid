@@ -23,16 +23,39 @@ Key insight: The same consensus and governance mechanisms that manage the grid c
 
 ## The Problem: Tragedy of the Commons
 
-Individual users acting in self-interest can collectively harm shared resources.
+Individuals acting in their own self-interest can collectively harm shared resources:
 
-**Resource types affected:**
-- Organization well-being
-- Physical resources
-- Global resources
-- Digital resources  
-- Community trust
+- The purpose of governance, whether national, community. or organizational, is to manage common resources
+- When governance fails, common resources degrade or are lost
+- When common resources degrade, trust erodes, leading to further degradation
+- As the commons degrades, self-interest intensifies, accelerating collapse
 
-**PromiseGrid solution:** Automate resource management using community-defined algorithms to align individual incentives with collective good.
+Nations, organizations, communities, and global systems all experience this cycle when governance mechanisms are inadequate.
+
+---
+
+## Civilization is built on promises
+
+Societies function when individuals make and keep promises.  Most of
+these promises are implicit; customs, traditions, and a shared
+understanding of core values.  When these implicit promises break down,
+society unravels.
+
+- Government/population "social contract" is a set of mutual promises,
+  both explicit and implicit.
+- Contracts are explicit promises between parties, but they assume
+  there is an implicit promise of enforcability by rule of law.
+- Politicians make promises to voters during campaigns -- when
+  politicians break promises, trust in government erodes.
+
+
+- Trust arises from reliable promise-keeping
+- When promises break down, trust erodes, leading to social and organizational collapse
+- Effective governance depends on the ability to make, keep, and enforce promises at all levels
+- PromiseGrid models computing and governance as systems of promises, enabling resilient collaboration
+- By aligning incentives and enabling transparent promise-keeping, PromiseGrid helps prevent tragedy of the commons scenarios
+- A society built on reliable promises is more likely to sustain its common resources and thrive
+- PromiseGrid provides the technical infrastructure to support such a promise-based society
 
 ---
 
