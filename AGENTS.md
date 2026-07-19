@@ -2,12 +2,17 @@
 
 ## Project Structure & Module Organization
 - Keep prose drafts, presentation decks, and small repo tools in purpose-named top-level paths; avoid `internal/` and `pkg/`.
+- Root `README.md` is the high-level project overview; `slides/intro/` is the current Go-backed remark.js slide tool.
 - Keep planning artifacts in the root `TODO/` directory. Optional root `DR/` and `docs/thought-experiments/` directories hold DR and TE records when needed.
 - Do not commit local state files (for example `.grok`, `.grok.lock`) or generated binaries.
 
 ## Build, Test, and Development Commands
-- Run Go tests from the relevant tool module, for example `tools/mint-handle/`.
+- There is no root Go module. Run Go commands from the relevant module, for example `slides/intro/` or `tools/mint-handle/`.
+- Run the slide tool with `cd slides/intro && go run main.go`.
+- Run slide tests with `cd slides/intro && go test ./...`.
+- Run handle-tool tests with `cd tools/mint-handle && go test ./...`.
 - Keep Go code `gofmt`-clean.
+- If Go commands fail because the local `go` binary and compiled standard-library objects are from different Go versions, report the environment blocker instead of changing repo files.
 
 ## Agent Instruction Architecture (Required)
 - `AGENTS.md` is the canonical home for repo-wide workflow, review, and vocabulary rules.
@@ -152,6 +157,9 @@
 - This applies to `AGENTS.md`, slides, white papers, drafts, TODO files, code, and all other repo files.
 - For public prose artifacts, edits must be traceable to a concrete user request or locked decision, not general polish.
 
+## Change Review Protocol (Required)
+- Treat a line containing only `deltas` as: ask the user to switch to plan mode and re-run if not already in plan mode, then analyze all uncommitted changes and plan how to ask for approval of each delta.
+
 ## Runtime Artifact Hygiene (Required)
 - Never put temporary test files, Go cache directories, build caches, or other runtime artifacts in this repo.
 - Runtime artifacts must go under `/tmp` subdirectories.
@@ -164,7 +172,7 @@
   logs) explicitly; do not fail silently.
 - In Go code, never ignore errors with `_ = ...`; handle, propagate, or report
   errors explicitly.
-- Run `errcheck ./...` and keep it passing for Go changes.
+- Run `errcheck ./...` from the relevant Go module and keep it passing for Go changes.
 
 ## DR/DI Source-of-Truth Protocol (Required)
 - In this repo, DR and DI logs are the primary source of truth for decisions and open questions.
