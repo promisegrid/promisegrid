@@ -18,8 +18,14 @@ can also be used to govern the organizations and communities that use
 it.
 
 This document is a high-level overview of the project.
-Proof-of-concept code is coming together at
-[github.com/stevegt/grid-cli](https://github.com/stevegt/grid-cli).
+
+The current public work in progress is split across three repos:
+[wire-lab](https://github.com/promisegrid/wire-lab), for protocol,
+kernel, runtime, storage, and application experiments;
+[promisegrid-dev-guide](https://github.com/ciwg/promisegrid-dev-guide),
+for guide material; and
+[grid-examples](https://github.com/ciwg/grid-examples), for runnable
+example applications.
 
 ## Why this matters
 
@@ -73,9 +79,9 @@ PromiseGrid addresses ToC by automating resource management and governance, ensu
 
 - [Content-addressable code](#content-addressable-code)
 - [Capability-as-Promise Model](#capability-as-promise-model)
-- [PromiseGrid Universal Protocol](#promisegrid-universal-protocol)
+- [pCID-selected grid messages](#pcid-selected-grid-messages)
 - [Merge-as-consensus Model](#merge-as-consensus-model)
-- [Decentralized cache](#decentralized-cache)
+- [Sparse CAS and local trust](#sparse-cas-and-local-trust)
 
 ## Computational Governance
 PromiseGrid implements computational governance by integrating computer-based systems and algorithms to automate and facilitate decision-making and governance. This mechanism makes governance more efficient, transparent, and participatory within organizations and broader society.
@@ -232,7 +238,11 @@ These principles are consistent with behavior and dysfunction observed
 in human organizations and distributed systems.
 
 While we expect some evolution of this model as we develop the grid,
-as of this writing it appears that:
+as of this writing it appears that one or both of the following models
+will be in use, depending on the protocol selected by the pCID of the
+messages used:
+
+#### Capability-as-Closure Model
 
 - An issuer creates a capability token by creating a
   [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming))
@@ -245,7 +255,7 @@ as of this writing it appears that:
 - Closures can be nested; the choice of whether to revoke or fulfill
   the promise could be handled by a security screening closure, for
   instance, before forwarding the request to the original issuer. This
-  could help simplify issuer code.  
+  could help simplify issuer code.
     - In order to avoid breaking principle (1) above, the issuer would
       send the original promise to the security screener, so the
       security screener could wrap it in a further promise. This
@@ -259,38 +269,45 @@ as of this writing it appears that:
 - Likewise, reputation -- how well a participant fulfills promises --
   could be tracked by the kernel or delegated.
 
-Which of these models is in use at any given time is a matter of
-protocol, and could be determined in a given session by the
-counterparties.
+#### Capability-as-Promise Model
 
-### PromiseGrid Universal Protocol
+The current public POC line no longer treats the capability token as
+the hash of a closure.  It treats signed capability tokens as issuer
+promises carried and redeemed under pCID-selected protocol rules:
+
+- An issuer signs a capability token describing what it promises to do,
+  under what terms, and for whom.
+- A holder presents that token back to the issuer, or to a protocol
+  participant the issuer has explicitly named.
+- Expiry, replay rejection, revocation, and trust updates are local
+  consequences of the promises each agent chose to rely on.
+- The exact token shape is protocol-specific.  Recent POCs use
+  CWT/COSE-shaped objects, but these are evidence of the current
+  direction, not frozen public APIs.
+
+### pCID-selected grid messages
 
 The low-level protocol of the grid, both on the wire and within the
 kernel, is designed for extensibility.
 
-A function call is a message.
+A grid message is a compact CBOR envelope:
 
-A message consists of a capability token followed by a payload.
-Because a token is the hash of the function that will fulfill the
-promise, a message always starts with the hash of the function that
-will fulfill the promise.  
+```text
+grid([42(pCID), ...protocol-defined-slots])
+```
 
-In other words, a message is a function call.  The message payload is
-the arguments to that function.  
+Slot 0 carries the CID of the protocol spec.  That pCID selects the
+parser and owns the following slots: payload shape, proof semantics,
+parent links, nested objects, and any protocol-specific meaning.
 
-A response to a message is another message.
+The pCID is not a peer address, app address, message type, route, or
+operation code.  Those meanings belong inside the pCID-defined payload
+or inside nested protocol objects.  This keeps the outer envelope small
+and lets protocols evolve without requiring central registration.
 
-A message can contain one or more messages in its payload.  This
-is roughly analogous to passing a function as an argument in a
-functional programming language.
-
-There are no version number or other metadata fields in a message
-header before the token.  The token is the address of the function,
-and doubles as a protocol version hash.  
-
-Because messages can be nested, kernels can be nested.  This is what
-allows the grid itself to be extensible and to evolve -- a hyperkernel
-can route messages to other kernels, and so on.
+A response to a message is another message.  Messages can contain or
+refer to other messages, so kernels and higher-level protocols can be
+composed without giving up exact byte-level protocol identity.
 
 ### Merge-as-Consensus Model
 
@@ -306,6 +323,11 @@ this should be done is application-specific, and we expect that the
 grid will support multiple merge functions for different types of
 data, each as content-addressable code.
 
+This model works best when application history is represented as
+immutable events or parent-linked object DAGs.  A merge can then replay
+the same content-addressed inputs under the same protocol rules before
+deciding where human judgment is needed.
+
 Merge conflicts occur when a merge function cannot fulfill its promise
 to produce a new version that incorporates the changes from all of the
 input versions.  This is a form of consensus failure.  We expect
@@ -318,47 +340,45 @@ resolving race conditions caused by concurrent writes to a single
 resource, and at very high levels, e.g. resolving disputes between
 participants in an organization or community.
 
-### Decentralized Cache
+### Sparse CAS and local trust
 
-The grid includes a decentralized cache that is used to store and
-replicate code and data across the network.  The cache is a
-content-addressable store on each node.  
+The storage model is a sparse content-addressed store on each
+node, with CIDs as the CAS keys.  As of this writing, it appears that
+the most likely arrangement will be that most CAS objects link to earlier CAS objects, forming a DAG of timelines, likely per-agent.
 
-Grid functions are pure functions -- they observe [referential
-transparency](https://en.wikipedia.org/wiki/Referential_transparency),
-always producing the same output from the same inputs. 
+This is similar in spirit to git's object and branch model, but more
+generalized for arbitrary application objects and protocols.  We also
+expect that most objects will chunked before storage using a
+content-defined chunking algorithm in order to better support large
+files and streaming data.
 
-The cache is a directed graph database.  Vertices are typically either
-hashes or arguments -- a message, when received, can be decomposed,
-with the leading hash (the capability token, function address) used as
-a vertex value, the first argument used as a destination vertex, and
-so on, eventually leading to the components of the response message.
+In at least some cases, a given pCID may specify that a protocol
+participant must preserve referential transparency, making event
+replay practical.  A node can rebuild application state by replaying
+signed envelopes, append-only event logs, or parent-linked object DAGs
+from CAS, then compare the rebuilt state with current promises and
+trust observations.
 
-This design allows the cache to store responses to function calls,
-even when the calling messages or responses are nested.
-
-When a node's kernel receives a message, it first checks its cache for
-the token and arguments.  If the call is in the cache, the kernel
-replies with the cached response.  If the message is not in the cache,
-the kernel encapsulates and forwards the message to any other node it
-has capability tokens for.  When the response is received, the kernel
-stores the response in the cache and forwards it to the original
-sender.
+Each agent keeps the objects it chooses to keep or has promised to
+retain: code, data, signed envelopes, parent-linked message DAGs,
+capability tokens, CAR payloads, and application objects.  Other agents
+may promise to store, serve, or transfer those objects, but the promise
+is separate from the CID.
 
 ## Contributing
 
-We welcome collaborators.  It's still early days; the core team is
-currently meeting as a group weekly as well as 1:1 in between, and
-we'll soon be standing up community systems (email, chat, etc.).  In
-the meantime, if you're interested in joining a mind-bending open
-source project that could change the world, watch this repo and
-contact Steve Traugott on
-[github](https://www.github.com/stevegt), 
-[twitter](https://www.twitter.com/stevegt), or
-[linkedin](https://www.linkedin.com/in/stevegt/).
+Start with [wire-lab](https://github.com/promisegrid/wire-lab) for the
+current design trail,
+[grid-examples](https://github.com/ciwg/grid-examples) for a few
+runnable example applications, and
+[promisegrid-dev-guide](https://github.com/ciwg/promisegrid-dev-guide)
+for where we're building guide material.  If you're interested in
+closer collaboration, watch this repo or contact any of the
+developers in the [ciwg
+repositories](https://github.com/orgs/ciwg/repositories) on github.
 
 ## Sponsorship
 
-PromiseGrid development is supported by 
+PromiseGrid development is supported in part by
 [C D International Technology, Inc.](http://www.cdint.com/) and 
 [TerraLuna, LLC](http://www.t7a.org).
