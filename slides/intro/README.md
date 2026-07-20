@@ -230,8 +230,8 @@ The dispatcher sits above PromiseBase, routing incoming messages to appropriate 
 
 .left-column[
 ### Message Processing
-- Parse CBOR 5-element messages
-- Validate protocol tags & CIDs
+- Parse CBOR grid envelopes
+- Validate grid tag & pCID
 - Extract signatures & claims
 - Verify cryptographic proofs
 ]
@@ -423,18 +423,15 @@ Consensus formation mirrors version control **merge** operations.
 ---
 
 
-## Five-Element CBOR Message Structure
+## pCID-Selected CBOR Grid Envelope
 
-PromiseGrid messages use a **5-element CBOR array** providing self-identification, routing, isolation, payload transport, and cryptographic verification.
+PromiseGrid messages use an outer CBOR semantic tag over a pCID-selected array.  The requested tag is `1735551332` (`0x67726964`), whose tag-number bytes spell `grid`.
 
 ```
-[
-  "grid",              // Protocol tag
-  protocol_cid,        // Handler routing  
-  grid_cid,            // Instance isolation
-  cwt_payload,         // Payload data
-  signature            // Cryptographic proof
-]
+1735551332([
+  42(pCID),                  // Protocol CID
+  ...protocol-defined-slots  // Payload, proofs, links, or nested objects
+])
 ```
 
 **Technologies:**
@@ -445,38 +442,38 @@ PromiseGrid messages use a **5-element CBOR array** providing self-identificatio
 
 ---
 
-## Element 1: Protocol Tag
+## Outer Tag: grid
 
 ```
-[ "grid", ... ]
-   ↑
-   Self-identifying protocol marker
+1735551332([42(pCID), ...])
+↑
+Self-identifying CBOR semantic tag
 ```
 
 **Purpose:** Immediate protocol recognition
 
-**Implementation:** UTF-8 text string "grid" (5 bytes with CBOR header)
+**Implementation:** CBOR tag `1735551332`; the tag-number bytes are `67 72 69 64`, which spell `grid`
 
 **Benefits:**
 - Fast message validation before parsing
 - Human-readable in debugging
 - Network analysis tool recognition
-- Future protocol variant support ("grid2", "grid-alt")
+- pCID-selected protocol evolution
 
 ---
 
-## Element 2: Protocol CID
+## Slot 0: Protocol CID
 
 ```
-[ "grid", protocol_cid, ... ]
-           ↑
-           Hash of protocol handler code
+1735551332([42(pCID), ...])
+             ↑
+             CID of the protocol spec
 ```
 
-**Purpose:** Routes message to correct protocol handler
+**Purpose:** Selects the protocol parser and slot semantics
 
 **Key Properties:**
-- Content-addressed protocol implementation
+- Content-addressed protocol definition
 - Exact version specification (not just version numbers)
 - Automatic code distribution and caching
 - Multiple protocol versions coexist
@@ -485,15 +482,15 @@ PromiseGrid messages use a **5-element CBOR array** providing self-identificatio
 
 ---
 
-## Element 3: Grid Instance CID
+## Protocol-Defined Slots
 
 ```
-[ "grid", protocol_cid, grid_cid, ... ]
-                         ↑
-                         Network namespace identifier
+1735551332([42(pCID), ...protocol-defined-slots])
+                        ↑
+                        pCID-owned payload, proofs, links, or nested objects
 ```
 
-**Purpose:** Isolates communication within specific grid instances
+**Purpose:** Carries the fields defined by the selected protocol
 
 **Enables:**
 - Multiple independent grids on shared infrastructure
@@ -506,15 +503,15 @@ PromiseGrid messages use a **5-element CBOR array** providing self-identificatio
 
 ---
 
-## Element 4: CWT Payload
+## Protocol-Defined Payload
 
 ```
-[ "grid", protocol_cid, grid_cid, cwt_payload, ... ]
-                                   ↑
-                                   CBOR Web Token claims
+1735551332([42(pCID), ..., payload, ...])
+                            ↑
+                            Protocol-defined message content
 ```
 
-**Purpose:** Application-specific message content
+**Purpose:** Application-specific message content under pCID-selected rules
 
 **Standard Claims:**
 - Issuer (iss), Subject (sub), Audience (aud)
@@ -527,20 +524,20 @@ PromiseGrid messages use a **5-element CBOR array** providing self-identificatio
 
 ---
 
-## Element 5: Signature
+## Protocol-Defined Proofs
 
 ```
-[ "grid", protocol_cid, grid_cid, cwt_payload, signature ]
-                                                ↑
-                                                COSE signature structure
+1735551332([42(pCID), ..., proof])
+                                   ↑
+                                   Protocol-defined proof or signature
 ```
 
 **Purpose:** Cryptographic authenticity and integrity
 
-**COSE Signature Contains:**
+**COSE-shaped proofs may contain:**
 - Protected headers (algorithm, countersignatures)
 - Unprotected headers (key identifier, certificates)
-- Signature value over all preceding elements
+- Signature value over protocol-selected content
 
 **Algorithms:** ECDSA, EdDSA, RSA-PSS variants
 
@@ -581,15 +578,16 @@ Distributed content store using directed graph database, indexed by CIDs.
 
 .smaller[
 **Stage 1: Structure Validation**
-- Parse CBOR 5-element array
+- Parse CBOR tagged array
 - Reject malformed messages early
 
-**Stage 2: Protocol Tag Check**
-- Verify "grid" tag
+**Stage 2: Protocol Selection**
+- Verify the `1735551332` grid tag
+- Extract the tag 42 pCID
 - Reject misrouted messages
 
 **Stage 3: CID Validation**
-- Extract protocol_cid and grid_cid
+- Validate the pCID and protocol-defined slots
 - Fetch unknown handlers/configs
 
 **Stage 4: Payload Processing**
@@ -862,4 +860,3 @@ class: center, middle
 - Windows Kernel Architecture
 - CWASI: WebAssembly Runtime Shim for Inter-function Communication
 ]
-

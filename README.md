@@ -319,8 +319,14 @@ kernel, is designed for extensibility.
 A grid message is a compact CBOR envelope:
 
 ```text
-grid([42(pCID), ...protocol-defined-slots])
+1735551332([42(pCID), ...protocol-defined-slots])
 ```
+
+The registration draft for the outer `grid` CBOR tag uses
+`1735551332` (`0x67726964`), whose tag-number bytes spell `grid` in
+ASCII.  See the [grid CBOR tag
+specification](docs/grid-cbor-tag-spec.md) for the IANA registration
+packet and the `grid(...)` diagnostic alias.
 
 Slot 0 carries the CID of the protocol spec.  That pCID selects the
 parser and owns the following slots: payload shape, proof semantics,
