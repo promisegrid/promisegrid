@@ -27,6 +27,32 @@ for guide material; and
 [grid-examples](https://github.com/ciwg/grid-examples), for runnable
 example applications.
 
+## Current status
+
+- **Implemented now:** this repo is the public overview and planning
+  trail.  It contains this README, TODO/DI tracking, the intro slide
+  material, and small repo tools.
+- **Active prototype work:** current executable work is happening in
+  [wire-lab](https://github.com/promisegrid/wire-lab) and
+  [grid-examples](https://github.com/ciwg/grid-examples).
+- **Planned design:** the broader decentralized-computer, governance,
+  WASI, self-hosting, and application-hosting goals remain design
+  direction unless tied to current prototype repos.
+
+## How to explore
+
+Start here for the high-level model.  Then read
+[wire-lab](https://github.com/promisegrid/wire-lab) for the current
+protocol and runtime design trail, inspect or run
+[grid-examples](https://github.com/ciwg/grid-examples) for example
+applications, and use
+[promisegrid-dev-guide](https://github.com/ciwg/promisegrid-dev-guide)
+for guide material as it becomes available.
+
+This repo is primarily an overview repo.  It does not provide the
+main runnable demo path; protocol details live in `wire-lab` and in
+example-local docs under `grid-examples`.
+
 ## Why this matters
 
 [Tragedy of the commons](https://en.wikipedia.org/wiki/Tragedy_of_the_commons) 

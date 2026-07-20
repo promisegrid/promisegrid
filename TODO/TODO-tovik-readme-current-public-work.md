@@ -35,15 +35,15 @@ Affects: README.md; TODO/TODO.md; TODO/TODO-tovik-readme-current-public-work.md
 - [x] tovik.2 Correct outdated capability, message-envelope, and storage descriptions.
 - [x] tovik.3 Keep the README change narrow and reviewable.
 - [x] tovik.4 Preserve referential transparency and event replay in the README.
-- [ ] tovik.5 Increment 1: add a current-status section and a compact reader path.
-  - [ ] tovik.5.1 Add a short `## Current status` section near the top after the current public-work repo paragraph.
-  - [ ] tovik.5.2 Split status into exactly three explicit buckets: `Implemented now`, `Active prototype work`, and `Planned design`.
-  - [ ] tovik.5.3 Use the status section to reduce overclaiming by separating implemented behavior, architecture direction, and long-term vision.
-  - [ ] tovik.5.4 Add a compact `## How to explore` section for technical readers.
-  - [ ] tovik.5.5 In `## How to explore`, point readers to `wire-lab`, `grid-examples`, and `promisegrid-dev-guide` in reading order.
-  - [ ] tovik.5.6 State that this root repo is primarily an overview repo if no repo-local runnable demo is provided here.
-  - [ ] tovik.5.7 Avoid adding demo commands unless they are repo-local and verified during the edit.
-  - [ ] tovik.5.8 Include where to read next for protocol details.
+- [x] tovik.5 Increment 1: add a current-status section and a compact reader path.
+  - [x] tovik.5.1 Add a short `## Current status` section near the top after the current public-work repo paragraph.
+  - [x] tovik.5.2 Split status into exactly three explicit buckets: `Implemented now`, `Active prototype work`, and `Planned design`.
+  - [x] tovik.5.3 Use the status section to reduce overclaiming by separating implemented behavior, architecture direction, and long-term vision.
+  - [x] tovik.5.4 Add a compact `## How to explore` section for technical readers.
+  - [x] tovik.5.5 In `## How to explore`, point readers to `wire-lab`, `grid-examples`, and `promisegrid-dev-guide` in reading order.
+  - [x] tovik.5.6 State that this root repo is primarily an overview repo if no repo-local runnable demo is provided here.
+  - [x] tovik.5.7 Avoid adding demo commands unless they are repo-local and verified during the edit.
+  - [x] tovik.5.8 Include where to read next for protocol details.
 - [ ] tovik.6 Increment 2: tighten top-level claims without broad rewrites.
   - [ ] tovik.6.1 Revise only the opening paragraphs enough to clarify what PromiseGrid is.
   - [ ] tovik.6.2 State who PromiseGrid is for.
