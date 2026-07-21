@@ -41,7 +41,13 @@ Consensus and governance mechanisms are implemented as basic system
 features and exposed to higher-level code, applications, and ultimately
 the users. This means that the same mechanisms that govern the grid
 can also be used to govern the organizations and communities that use
-it.*
+it.
+
+PromiseGrid implements computational governance by integrating
+computer-based systems and algorithms to automate and facilitate
+decision-making and governance. This mechanism makes governance more
+efficient, transparent, and participatory within organizations and
+broader society.*
 
 ## Current status
 
@@ -51,9 +57,6 @@ it.*
 - **Active prototype work:** current executable work is happening in
   [wire-lab](https://github.com/promisegrid/wire-lab) and
   [grid-examples](https://github.com/ciwg/grid-examples).
-- **Planned design:** the broader decentralized-computer, governance,
-  WASI, self-hosting, and application-hosting goals remain design
-  direction unless tied to current prototype repos.
 
 ## How to explore
 
@@ -85,7 +88,7 @@ a whole, or it may be a shared physical, natural, or digital resource.
 
 PromiseGrid addresses ToC by automating resource management and governance, ensuring efficient and equitable use. It leverages algorithms set by its community for this autonomous operation.
 
-## Features
+## Feature Goals
 
 - Users own their own nodes.
 - The grid grows as nodes join.
@@ -125,8 +128,6 @@ PromiseGrid addresses ToC by automating resource management and governance, ensu
 - [Merge-as-consensus Model](#merge-as-consensus-model)
 - [Sparse CAS and local trust](#sparse-cas-and-local-trust)
 
-## Computational Governance
-PromiseGrid implements computational governance by integrating computer-based systems and algorithms to automate and facilitate decision-making and governance. This mechanism makes governance more efficient, transparent, and participatory within organizations and broader society.
 
 ## Foundations and Roadmap
 
@@ -144,7 +145,7 @@ PromiseGrid implements computational governance by integrating computer-based sy
     - [x] Virtualization (2000s)
     - [x] Containerization (2010s)
     - [x] WebAssembly (WASM) (2020s)
-    - [x] WebAssembly System Interface (WASI) (2020s)
+    - [.] WebAssembly System Interface (WASI) (2020s)
     - [x] Large language models (2020s)
 - [x] Write LLM-based bootstrap tooling
 - [x] Write POC and example code
@@ -154,7 +155,7 @@ PromiseGrid implements computational governance by integrating computer-based sy
   - [grid-examples](https://github.com/ciwg/grid-examples)
   - ...
 - [x] Write grid protocol specification
-- [x] Register 'grid' CBOR tag
+- [.] Register 'grid' CBOR tag
 - [.] Write draft RFC
 - [.] Dogfood grid apps internally in a manufacturing environment
 - [.] Develop/port example applications to grid
@@ -206,10 +207,13 @@ PromiseGrid implements computational governance by integrating computer-based sy
 
 ## Architecture
 
-The core PromiseGrid code operates as a decentralized kernel and
-presents syscall-like services to applications.  It acts as a "sandbox
-orchestrator", regardless of the sandbox technology employed; the grid supports
-container, VM, WASM, or bare metal environments.
+### Architectural Goals
+
+*The core PromiseGrid code operates as a set of decentralized kernel
+roles or modules and presents syscall-like message-based services to
+applications.  It acts as a "sandbox orchestrator", regardless of the
+sandbox technology employed; the grid supports container, VM, WASM, or
+bare metal environments.
 
 For WASM, for example, the grid takes advantage of the WebAssembly
 virtual machine now in all major browsers, offering services to WASM
@@ -226,7 +230,7 @@ disk images and configuration files to servers, and can manage the
 execution of applications on those servers -- a bare-metal server is
 just another "sandbox".  This allows the grid to be used for
 configuration management, following DevOps and Infrastructure as Code
-(IoC) principles.
+(IoC) principles.*
 
 ### Content-addressable Code
 
