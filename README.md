@@ -128,7 +128,10 @@ PromiseGrid addresses ToC by automating resource management and governance, ensu
 ## Computational Governance
 PromiseGrid implements computational governance by integrating computer-based systems and algorithms to automate and facilitate decision-making and governance. This mechanism makes governance more efficient, transparent, and participatory within organizations and broader society.
 
-## Milestones
+## Foundations and Roadmap
+
+'x': done
+'.': in progress
 
 - [x] Enabling technologies
     - [x] Lessons learned from centralized computing 
@@ -141,66 +144,65 @@ PromiseGrid implements computational governance by integrating computer-based sy
     - [x] Virtualization (2000s)
     - [x] Containerization (2010s)
     - [x] WebAssembly (WASM) (2020s)
-    - [ ] WebAssembly System Interface (WASI) (2020s)
+    - [x] WebAssembly System Interface (WASI) (2020s)
     - [x] Large language models (2020s)
-- [ ] Convene/contact 
-    - [x]  Community Systems Working Group [CSWG](http://cswg.infrastructures.org/)
-    - [x]  Internet of Production [IoP](http://www.internetofproduction.org/)
-    - [ ]  [Worknetting](https://en.wikipedia.org/wiki/Worknet) community
-    - [ ]  [Mark Burgess](http://markburgess.org/)
-    - [ ]  [Alva Couch](https://engineering.tufts.edu/cs/people/faculty/alva-couch)
-    - [ ] ...
 - [x] Write LLM-based bootstrap tooling
-    - [x]  [Grokker](http://github.com/stevegt/grokker)
-- [ ] Write WASI target
-- [ ] Develop/port example applications to WASI target
+- [x] Write POC and example code
+  - [grid-poc](https://github.com/promisegrid/grid-poc)
+  - [wire-lab](https://github.com/promisegrid/wire-lab)
+  - [promisegrid-dev-guide](https://github.com/ciwg/promisegrid-dev-guide)
+  - [grid-examples](https://github.com/ciwg/grid-examples)
+  - ...
+- [x] Write grid protocol specification
+- [x] Register 'grid' CBOR tag
+- [.] Write draft RFC
+- [.] Dogfood grid apps internally in a manufacturing environment
+- [.] Develop/port example applications to grid
     - [ ] Development tools
-        - [ ] Grokker 
-        - [ ] Multi-agent production
+        - [.] multi-user coding environment
         - [ ] Native LLM/ML 
-        - [ ] Grid protocol analyzer
-        - [ ] WASI kernel debugger
+        - [.] Grid protocol analyzer
         - [ ] ...
     - [ ] DevOps tools to manage underlying infrastructure
-        - [ ] Container orchestration
-        - [ ] Disk image management
-        - [ ] Configuration management 
+        - [.] Container orchestration
+        - [.] Disk image management
+        - [.] Configuration management
     - [ ] Community systems
-        - [ ] Collaborative text editor
+        - [.] Collaborative text editor
         - [ ] Chat
         - [ ] Video conferencing
         - [ ] Event scheduling/management
         - [ ] Virtual world
         - [ ] Membership management
-    - [ ] Enterprise Resource Planning (ERP)
+    - [.] Enterprise Resource Planning (ERP)
         - [ ] Inventory management
         - [ ] Project and task management
         - [ ] Bill of materials
-        - [ ] Production scheduling
-        - [ ] Accounting 
+        - [.] Production scheduling
+        - [.] Accounting
         - [ ] Quoting
-        - [ ] Order entry
-        - [ ] Shipping
-        - [ ] Invoicing
+        - [.] Order entry
+        - [.] Shipping
+        - [.] Invoicing
         - [ ] Payroll
             - [ ] Time tracking 
         - [ ] Facilities management
-            - [ ] IoT device management
+        - [.] IoT device management
         - [ ] ...
-    - [ ] Version control
-        - [ ] issue tracker
+    - [.] Version control
+        - [x] basic VCS features
+        - [.] issue tracker
         - [ ] wiki
         - [ ] code review
         - [ ] CI/CD
         - [ ] code search
         - [ ] execute from repo
         - [ ] large blobs
-        - [ ] tool to import from `git fast-export` 
+        - [.] git import/export
     - [ ] ...
 - [ ] Self-hosting
-    - [ ] Migrate remaining community systems to PromiseGrid
+    - [ ] Migrate remaining CSWG systems to PromiseGrid
     - [ ] Migrate remaining repositories from github to PromiseGrid
-
 
 ## Architecture
 

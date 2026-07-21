@@ -29,6 +29,25 @@ Intent: Improve the README for new public readers without turning the next edit 
 Constraints: Keep changes incremental and diffable; do not add license, governance, code-of-conduct, security, maintainership, or documentation-index links; keep README as a public overview rather than a comprehensive protocol spec.
 Affects: README.md; TODO/TODO.md; TODO/TODO-tovik-readme-current-public-work.md
 
+ID: DI-totar
+Date: 2026-07-20 20:24:25
+Status: superseded
+Author: stevegt@t7a.org (Steve)
+Decision: Keep historical enabling milestones visible in the README while replacing the long milestones checklist with a compact roadmap summary.
+Intent: Preserve the public story of why the work is now possible without keeping transient outreach and project-management detail in the README.
+Constraints: Keep the edit incremental and diffable; do not add standard project metadata links; do not move the detailed checklist into another file in this pass.
+Affects: README.md; TODO/TODO-tovik-readme-current-public-work.md
+
+ID: DI-fitut
+Date: 2026-07-20 20:45:45
+Status: active
+Author: stevegt@t7a.org (Steve)
+Decision: Preserve the README milestones as a checklist-style Foundations and Roadmap section while tightening only the public-facing content that belongs there.
+Intent: Keep historical milestones, active work, in-progress dogfooding, and future application targets visible because they explain the work's trajectory and enabling context.
+Constraints: Do not remove the milestone/checklist structure; trim transient outreach, obsolete names, and private coordination detail only where needed; do not add standard project metadata links.
+Affects: README.md; TODO/TODO-tovik-readme-current-public-work.md
+Supersedes: DI-totar
+
 ## Task
 
 - [x] tovik.1 Update the stale public-work pointer in `README.md`.
@@ -65,12 +84,12 @@ Affects: README.md; TODO/TODO.md; TODO/TODO-tovik-readme-current-public-work.md
   - [ ] tovik.7.9 Make clear when a merge is required and when a cross-reference is just evidence.
   - [ ] tovik.7.10 Refine `Sparse CAS and local trust` to distinguish immutable content-addressed source objects, mutable or rebuildable local indexes, replication state, cached query results, and application-level projections.
   - [ ] tovik.7.11 Clarify pure-function boundaries by explaining how side effects are represented as signed observations, promises, event records, or adapter interactions outside the pure core.
-- [ ] tovik.8 Increment 4: shorten public roadmap/contributing/sponsorship presentation while excluding standard project metadata links.
-  - [ ] tovik.8.1 Replace the long `## Milestones` checklist with a shorter README roadmap summary.
-  - [ ] tovik.8.2 In the roadmap summary, distinguish active work from historical enabling technologies and future applications.
-  - [ ] tovik.8.3 Keep detailed roadmap material out of the main README for this pass; if preservation is needed, plan a separate roadmap extraction instead of doing it silently.
-  - [ ] tovik.8.4 Keep the current neutral contributing section and do not restore personal contact details, named outreach targets, or transient meeting status.
-  - [ ] tovik.8.5 Keep sponsorship brief and neutral unless the user asks to move or remove it.
-  - [ ] tovik.8.6 Do not add standard project metadata links: no license link, governance link, contribution guide link, code of conduct link, security disclosure link, maintainership policy link, or documentation index link.
-  - [ ] tovik.8.7 Keep the README project-generic and avoid private deployment, customer-specific, or transient coordination context.
-  - [ ] tovik.8.8 Clean up trailing whitespace and obvious scanability problems in touched lines only; do not normalize style or rewrap unrelated prose.
+- [x] tovik.8 Increment 4: preserve the public roadmap milestones while excluding standard project metadata links.
+  - [x] tovik.8.1 Keep a checklist-style `## Foundations and Roadmap` section that preserves historical milestones.
+  - [x] tovik.8.2 In the milestones, distinguish completed foundations, active or in-progress work, and future application targets.
+  - [x] tovik.8.3 Keep detailed milestone material in the main README when it explains historical enabling context, current public work, dogfooding, or future grid application targets.
+  - [x] tovik.8.4 Keep the current neutral contributing section and do not restore personal contact details, named outreach targets, or transient meeting status.
+  - [x] tovik.8.5 Keep sponsorship brief and neutral unless the user asks to move or remove it.
+  - [x] tovik.8.6 Do not add standard project metadata links: no license link, governance link, contribution guide link, code of conduct link, security disclosure link, maintainership policy link, or documentation index link.
+  - [x] tovik.8.7 Keep the README project-generic and avoid private deployment, customer-specific, or transient coordination context.
+  - [x] tovik.8.8 Clean up trailing whitespace and obvious scanability problems in touched lines only; do not normalize style or rewrap unrelated prose.
