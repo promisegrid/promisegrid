@@ -44,15 +44,15 @@ Affects: README.md; TODO/TODO.md; TODO/TODO-tovik-readme-current-public-work.md
   - [x] tovik.5.6 State that this root repo is primarily an overview repo if no repo-local runnable demo is provided here.
   - [x] tovik.5.7 Avoid adding demo commands unless they are repo-local and verified during the edit.
   - [x] tovik.5.8 Include where to read next for protocol details.
-- [ ] tovik.6 Increment 2: tighten top-level claims without broad rewrites.
-  - [ ] tovik.6.1 Revise only the opening paragraphs enough to clarify what PromiseGrid is.
-  - [ ] tovik.6.2 State who PromiseGrid is for.
-  - [ ] tovik.6.3 State what problem PromiseGrid addresses first.
-  - [ ] tovik.6.4 State why the promise-based design is different from conventional distributed systems.
-  - [ ] tovik.6.5 Keep the `decentralized computer` framing if it still fits the surrounding prose.
-  - [ ] tovik.6.6 Distinguish long-term governance vision from current prototype work.
-  - [ ] tovik.6.7 Replace broad or hype-like claims with concrete, testable examples where a small local edit can do so.
-  - [ ] tovik.6.8 Keep line wrapping stable and avoid rewriting unrelated sections.
+- [x] tovik.6 Increment 2: tighten top-level claims without broad rewrites.
+  - [x] tovik.6.1 Revise only the opening paragraphs enough to clarify what PromiseGrid is.
+  - [x] tovik.6.2 State who PromiseGrid is for.
+  - [x] tovik.6.3 State what problem PromiseGrid addresses first.
+  - [x] tovik.6.4 State why the promise-based design is different from conventional distributed systems.
+  - [x] tovik.6.5 Keep the `decentralized computer` framing if it still fits the surrounding prose.
+  - [x] tovik.6.6 Distinguish long-term governance vision from current prototype work.
+  - [x] tovik.6.7 Replace broad or hype-like claims with concrete, testable examples where a small local edit can do so.
+  - [x] tovik.6.8 Keep line wrapping stable and avoid rewriting unrelated sections.
 - [ ] tovik.7 Increment 3: clarify capability, pCID, merge, and sparse-CAS architecture boundaries.
   - [ ] tovik.7.1 Refine `Capability-as-Promise Model` to make issuer authority explicit.
   - [ ] tovik.7.2 Clarify bearer versus non-bearer token behavior if the README keeps both token forms in scope.

@@ -1,21 +1,20 @@
 # PromiseGrid
 
-PromiseGrid is a consensus-based computing, communications, and
-governance system.  It's designed specifically to address the problems
-of collaborative work and leadership that plague organizations and
-communities, including non-profits and businesses.
+PromiseGrid is an experimental decentralized computing and coordination
+architecture for groups, communities, and organizations that need shared
+software, shared infrastructure, and shared decisions without handing
+control to one operator.
 
-PromiseGrid is to computation what the Internet is to communication --
-the Internet is a decentralized network; PromiseGrid is a
-decentralized computer.  Owned and operated by its users rather than
-any single legal entity, the grid is scalable and resilient, growing
-as users join. 
+It starts from a common failure mode in collaborative systems: shared
+resources, authority, and software execution become fragile when they
+depend on central operators or unclear promises between participants.
 
-Consensus and governance mechanisms are implemented as basic system
-calls and exposed to higher-level code, applications, and ultimately
-the users. This means that the same mechanisms that govern the grid
-can also be used to govern the organizations and communities that use
-it.
+PromiseGrid models capabilities, protocol actions, storage, and
+governance as promises that agents can make, keep, delegate, revoke,
+replay, and audit.  The long-term goal is a decentralized computer:
+computation, communication, and governance run by the participants who
+rely on them.  Current executable work is still prototype work, as
+summarized below.
 
 This document is a high-level overview of the project.
 
@@ -26,6 +25,23 @@ kernel, runtime, storage, and application experiments;
 for guide material; and
 [grid-examples](https://github.com/ciwg/grid-examples), for runnable
 example applications.
+
+## Goals
+
+While still experimental, PromiseGrid is intended to support the
+following long-term philosophy and goals:
+
+*PromiseGrid is to computation what the Internet is to communication --
+the Internet is a decentralized network; PromiseGrid is a
+decentralized computer.  Owned and operated by its users rather than
+any single legal entity, the grid is scalable and resilient, growing
+as users join.
+
+Consensus and governance mechanisms are implemented as basic system
+features and exposed to higher-level code, applications, and ultimately
+the users. This means that the same mechanisms that govern the grid
+can also be used to govern the organizations and communities that use
+it.*
 
 ## Current status
 
