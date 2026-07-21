@@ -288,13 +288,12 @@ messages used:
 
 #### Capability-as-Closure Model
 
-- An issuer creates a capability token by creating a
+- In protocols that use the "Capability as Closure" model, an issuer creates a capability token by creating a
   [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming))
   containing a function that will fulfill the promise, and then
-  hashing the closure's code.  The hash is both the capability token
-  and the address of the closure.
+  hashing and signing the closure's code.
 - A holder calls the closure (sends a message to the closure's
-  address).  When called, the closure can elect to fulfill the
+  hash address).  When called, the closure can elect to fulfill the
   promise, revoke the capability token, or issue a further promise.
 - Closures can be nested; the choice of whether to revoke or fulfill
   the promise could be handled by a security screening closure, for
@@ -305,19 +304,15 @@ messages used:
       security screener could wrap it in a further promise. This
       avoids the case where an issuer would otherwise be making a
       promise for the security screener to fulfill.
-- The kernel could maintain a graph of promises and their fulfillment,
+- The receiver could maintain a graph of promises and their fulfillment,
   and could use this graph to manage access control and to facilitate
-  consensus formation and conflict resolution among participants, or
-  these functions could be delegated to hosted modules or to the
-  original issuer.
-- Likewise, reputation -- how well a participant fulfills promises --
-  could be tracked by the kernel or delegated.
+  consensus formation and conflict resolution among participants.
 
 #### Capability-as-Promise Model
 
-The current public POC line no longer treats the capability token as
-the hash of a closure.  It treats signed capability tokens as issuer
-promises carried and redeemed under pCID-selected protocol rules:
+Another model, used by the current public POCs, treats signed
+capability tokens as issuer promises carried and redeemed under
+pCID-selected protocol rules:
 
 - An issuer signs a capability token describing what it promises to do,
   under what terms, and for whom.
@@ -325,9 +320,10 @@ promises carried and redeemed under pCID-selected protocol rules:
   participant the issuer has explicitly named.
 - Expiry, replay rejection, revocation, and trust updates are local
   consequences of the promises each agent chose to rely on.
+- Issuers might create bearer tokens or identity-bound tokens.  Bearer
+  tokens might be redeemable for more-specific identity-bound tokens.
 - The exact token shape is protocol-specific.  Recent POCs use
-  CWT/COSE-shaped objects, but these are evidence of the current
-  direction, not frozen public APIs.
+  CWT/COSE-shaped objects, for example.
 
 ### pCID-selected grid messages
 
@@ -346,9 +342,20 @@ ASCII.  See the [grid CBOR tag
 specification](docs/grid-cbor-tag-spec.md) for the IANA registration
 packet and the `grid(...)` diagnostic alias.
 
-Slot 0 carries the CID of the protocol spec.  That pCID selects the
-parser and owns the following slots: payload shape, proof semantics,
-parent links, nested objects, and any protocol-specific meaning.
+Diagnostic notation may render the same value as
+`grid([42(pCID), ...protocol-defined-slots])`.  Slot 0 carries the
+pCID wrapped in CBOR tag 42, the IPLD CID tag.  The outer `grid` tag
+identifies the envelope; the inner IPLD CID tag preserves the standard
+CID representation for the protocol spec.
+
+The pCID selects the parser and owns the following slots: payload
+shape, proof and signature semantics, parent or reference links, nested
+objects, and any protocol-specific meaning.
+
+The outer `grid` tag does not make a message trusted or executable by
+itself.  Trust, authorization, replay handling, signatures, proofs, and
+resource limits are defined by the pCID-selected protocol and enforced
+by local policy.
 
 The pCID is not a peer address, app address, message type, route, or
 operation code.  Those meanings belong inside the pCID-defined payload
@@ -361,17 +368,20 @@ composed without giving up exact byte-level protocol identity.
 
 ### Merge-as-Consensus Model
 
-The grid's consensus formation and conflict resolution mechanisms are
-based on a model semantically similar to the
-[merge](https://git-scm.com/docs/git-merge) function of a version
-control system.
-
 Merges are a form of consensus formation.  A merge is a function that
-takes two or more versions of a document and produces a new version
-that incorporates the changes from all of the input versions.  How
-this should be done is application-specific, and we expect that the
-grid will support multiple merge functions for different types of
-data, each as content-addressable code.
+takes two or more versions of a set of data, producing a new version
+that incorporates the changes from all of the input versions.  In a
+version control system, a [merge](https://git-scm.com/docs/git-merge)
+is part of the process of reaching agreement or consensus about the
+contents of a file or set of files.
+
+PromiseGrid protocols can use a similar process for continual
+consensus formation.  How this should be done is protocol-specific,
+and can involve event streams, branch heads, or object DAGs.  The
+current POCs have so far evolved a VCS-like CAS model, where events
+(commits) on timelines (branches) can be linked for reference, or
+entire timelines merged. A cross-reference to another event or object
+can be evidence without requiring an immediate or full merge.
 
 This model works best when application history is represented as
 immutable events or parent-linked object DAGs.  A merge can then replay
@@ -387,7 +397,7 @@ intervention if necessary.
 
 We expect this same model to be applicable at very low levels, e.g.
 resolving race conditions caused by concurrent writes to a single
-resource, and at very high levels, e.g. resolving disputes between
+resource, and at very high levels, e.g. forming consensus among
 participants in an organization or community.
 
 ### Sparse CAS and local trust
@@ -402,18 +412,21 @@ expect that most objects will chunked before storage using a
 content-defined chunking algorithm in order to better support large
 files and streaming data.
 
+Mutable or rebuildable local data is separate from immutable CAS source
+objects.  Local indexes, replication state, cached query results, and
+application-level projections may summarize, cache, or reconcile CAS
+objects, but they do not change the content identified by a CID.
+
 In at least some cases, a given pCID may specify that a protocol
 participant must preserve referential transparency, making event
 replay practical.  A node can rebuild application state by replaying
 signed envelopes, append-only event logs, or parent-linked object DAGs
-from CAS, then compare the rebuilt state with current promises and
-trust observations.
+from CAS.
 
 Each agent keeps the objects it chooses to keep or has promised to
 retain: code, data, signed envelopes, parent-linked message DAGs,
 capability tokens, CAR payloads, and application objects.  Other agents
-may promise to store, serve, or transfer those objects, but the promise
-is separate from the CID.
+may promise to store, serve, or transfer those objects.
 
 ## Contributing
 

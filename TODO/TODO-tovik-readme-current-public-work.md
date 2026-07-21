@@ -48,6 +48,25 @@ Constraints: Do not remove the milestone/checklist structure; trim transient out
 Affects: README.md; TODO/TODO-tovik-readme-current-public-work.md
 Supersedes: DI-totar
 
+ID: DI-nanaj
+Date: 2026-07-21 10:15:34
+Status: superseded
+Author: stevegt@t7a.org (Steve)
+Decision: Clarify README architecture boundaries while keeping closure-based and signed-token capability models as live pCID-selected options.
+Intent: Make the public overview more precise about issuer authority, pCID ownership, local trust, non-global merge semantics, sparse-CAS roles, and replay boundaries without freezing public APIs.
+Constraints: Keep edits narrow and diffable; preserve both capability models; align grid-envelope wording with docs/grid-cbor-tag-spec.md; do not add standard project metadata links.
+Affects: README.md; TODO/TODO-tovik-readme-current-public-work.md
+
+ID: DI-jajir
+Date: 2026-07-21 10:52:33
+Status: active
+Author: stevegt@t7a.org (Steve)
+Decision: Treat the current README architecture wording as the completed tovik.7 outcome, including the closure capability model, signed-token POC model, pCID envelope wording, VCS-like merge consensus framing, and sparse-CAS replay language.
+Intent: Keep the TODO/DI record aligned with the user-edited README instead of forcing the README back to the earlier broader architecture-boundary plan.
+Constraints: Do not rewrite the README to match DI-nanaj; preserve the current README's merge-as-consensus framing and sparse-CAS wording; keep edits minimal and diffable.
+Affects: README.md; TODO/TODO-tovik-readme-current-public-work.md
+Supersedes: DI-nanaj
+
 ## Task
 
 - [x] tovik.1 Update the stale public-work pointer in `README.md`.
@@ -72,18 +91,18 @@ Supersedes: DI-totar
   - [x] tovik.6.6 Distinguish long-term governance vision from current prototype work.
   - [x] tovik.6.7 Replace broad or hype-like claims with concrete, testable examples where a small local edit can do so.
   - [x] tovik.6.8 Keep line wrapping stable and avoid rewriting unrelated sections.
-- [ ] tovik.7 Increment 3: clarify capability, pCID, merge, and sparse-CAS architecture boundaries.
-  - [ ] tovik.7.1 Refine `Capability-as-Promise Model` to make issuer authority explicit.
-  - [ ] tovik.7.2 Clarify bearer versus non-bearer token behavior if the README keeps both token forms in scope.
-  - [ ] tovik.7.3 Clarify redemption, revocation, delegation, replay protection, signatures, and identity at a README-overview level.
-  - [ ] tovik.7.4 Clarify what the kernel promises versus what an application promises.
-  - [ ] tovik.7.5 Refine `pCID-selected grid messages` so the README introduces settled vocabulary once: `grid()`, promises, pCIDs, content-addressed protocol definitions, signed messages, CAS storage, reference sets, and per-agent or per-domain event timelines.
-  - [ ] tovik.7.6 Avoid presenting vocabulary as frozen public API unless the wording clearly says it is current design direction.
-  - [ ] tovik.7.7 Refine `Merge-as-Consensus Model` so it does not imply global consensus by default.
-  - [ ] tovik.7.8 Clarify that ordinary operation can use local promises, local trust, event references, reconciliation events, selected branch heads, or explicit merge/checkpoint promises.
-  - [ ] tovik.7.9 Make clear when a merge is required and when a cross-reference is just evidence.
-  - [ ] tovik.7.10 Refine `Sparse CAS and local trust` to distinguish immutable content-addressed source objects, mutable or rebuildable local indexes, replication state, cached query results, and application-level projections.
-  - [ ] tovik.7.11 Clarify pure-function boundaries by explaining how side effects are represented as signed observations, promises, event records, or adapter interactions outside the pure core.
+- [x] tovik.7 Increment 3: align capability, pCID, merge, and sparse-CAS architecture wording with the current README.
+  - [x] tovik.7.1 Keep both capability models visible: `Capability as Closure` and signed capability promises used by current public POCs.
+  - [x] tovik.7.2 In the closure model, describe a capability token as signed closure code addressed by hash under protocols that use that model.
+  - [x] tovik.7.3 In the signed-token model, describe bearer tokens, identity-bound tokens, and redemption for more-specific identity-bound tokens.
+  - [x] tovik.7.4 Keep token shape protocol-specific and cite CWT/COSE-shaped objects as examples, not frozen APIs.
+  - [x] tovik.7.5 Refine `pCID-selected grid messages` to include `grid([42(pCID), ...])`, IPLD tag 42, pCID-owned slots, and pCID-defined trust/proof/replay semantics.
+  - [x] tovik.7.6 Preserve the README's statement that a pCID is not a peer address, app address, message type, route, or operation code.
+  - [x] tovik.7.7 Refine `Merge-as-Consensus Model` around VCS-like continual consensus formation.
+  - [x] tovik.7.8 Clarify that protocol-specific merge inputs can include event streams, branch heads, or object DAGs.
+  - [x] tovik.7.9 Make clear that a cross-reference can be evidence without requiring an immediate or full merge.
+  - [x] tovik.7.10 Refine `Sparse CAS and local trust` to distinguish mutable or rebuildable local data from immutable CAS source objects.
+  - [x] tovik.7.11 Preserve referential-transparency and event-replay wording using signed envelopes, append-only event logs, or parent-linked object DAGs from CAS.
 - [x] tovik.8 Increment 4: preserve the public roadmap milestones while excluding standard project metadata links.
   - [x] tovik.8.1 Keep a checklist-style `## Foundations and Roadmap` section that preserves historical milestones.
   - [x] tovik.8.2 In the milestones, distinguish completed foundations, active or in-progress work, and future application targets.
