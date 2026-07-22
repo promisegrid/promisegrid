@@ -339,11 +339,11 @@ A grid message is a compact CBOR envelope:
 1735551332([42(pCID), ...protocol-defined-slots])
 ```
 
-The registration draft for the outer `grid` CBOR tag uses
+The registered specification for the outer `grid` CBOR tag uses
 `1735551332` (`0x67726964`), whose tag-number bytes spell `grid` in
 ASCII.  See the [grid CBOR tag
 specification](docs/grid-cbor-tag-spec.md) for the IANA registration
-packet and the `grid(...)` diagnostic alias.
+document and the `grid(...)` diagnostic alias.
 
 Diagnostic notation may render the same value as
 `grid([42(pCID), ...protocol-defined-slots])`.  Slot 0 carries the
