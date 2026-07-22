@@ -131,8 +131,7 @@ PromiseGrid addresses ToC by automating resource management and governance, ensu
 
 ## Foundations and Roadmap
 
-- "x": done
-- ".": in progress
+For the items below, "x" means done, "." means in progress.
 
 - [x] Enabling technologies
     - [x] Lessons learned from centralized computing 
