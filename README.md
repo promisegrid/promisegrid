@@ -35,15 +35,15 @@ following long-term philosophy and goals:
 the Internet is a decentralized network; PromiseGrid is a
 decentralized computer.  Owned and operated by its users rather than
 any single legal entity, the grid is scalable and resilient, growing
-as users join.
+as users join.*
 
-Consensus and governance mechanisms are implemented as basic system
+*Consensus and governance mechanisms are implemented as basic system
 features and exposed to higher-level code, applications, and ultimately
 the users. This means that the same mechanisms that govern the grid
 can also be used to govern the organizations and communities that use
-it.
+it.*
 
-PromiseGrid implements computational governance by integrating
+*PromiseGrid implements computational governance by integrating
 computer-based systems and algorithms to automate and facilitate
 decision-making and governance. This mechanism makes governance more
 efficient, transparent, and participatory within organizations and
@@ -213,19 +213,19 @@ PromiseGrid addresses ToC by automating resource management and governance, ensu
 roles or modules and presents syscall-like message-based services to
 applications.  It acts as a "sandbox orchestrator", regardless of the
 sandbox technology employed; the grid supports container, VM, WASM, or
-bare metal environments.
+bare metal environments.*
 
-For WASM, for example, the grid takes advantage of the WebAssembly
+*For WASM, for example, the grid takes advantage of the WebAssembly
 virtual machine now in all major browsers, offering services to WASM
 modules. The kernel also runs natively on server nodes and can be used
-to run applications from the command line or as daemons.
+to run applications from the command line or as daemons.*
 
-The grid can execute containerized applications, either within WASI as
+*The grid can execute containerized applications, either within WASI as
 a machine emulator (e.g.,
 [container2wasm](https://github.com/ktock/container2wasm)) or natively
-as a container orchestrator similar to Kubernetes or Docker Swarm.
+as a container orchestrator similar to Kubernetes or Docker Swarm.*
 
-For bare-metal applications, the grid can manage the deployment of
+*For bare-metal applications, the grid can manage the deployment of
 disk images and configuration files to servers, and can manage the
 execution of applications on those servers -- a bare-metal server is
 just another "sandbox".  This allows the grid to be used for
