@@ -131,7 +131,8 @@ PromiseGrid addresses ToC by automating resource management and governance, ensu
 
 ## Foundations and Roadmap
 
-For the items below, "x" means done, "." means in progress.
+For the items below, checked means done, "." means in progress, "e"
+means in progress by an external third party.
 
 - [x] Enabling technologies
     - [x] Lessons learned from centralized computing 
@@ -144,7 +145,7 @@ For the items below, "x" means done, "." means in progress.
     - [x] Virtualization (2000s)
     - [x] Containerization (2010s)
     - [x] WebAssembly (WASM) (2020s)
-    - [.] WebAssembly System Interface (WASI) (2020s)
+    - [e] WebAssembly System Interface (WASI) (2020s)
     - [x] Large language models (2020s)
 - [x] Write LLM-based bootstrap tooling
 - [x] Write POC and example code
