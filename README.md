@@ -131,8 +131,8 @@ PromiseGrid addresses ToC by automating resource management and governance, ensu
 
 ## Foundations and Roadmap
 
-'x': done
-'.': in progress
+- "x": done
+- ".": in progress
 
 - [x] Enabling technologies
     - [x] Lessons learned from centralized computing 
@@ -155,7 +155,7 @@ PromiseGrid addresses ToC by automating resource management and governance, ensu
   - [grid-examples](https://github.com/ciwg/grid-examples)
   - ...
 - [x] Write grid protocol specification
-- [.] Register 'grid' CBOR tag
+- [x] Register 'grid' CBOR tag
 - [.] Write draft RFC
 - [.] Dogfood grid apps internally in a manufacturing environment
 - [.] Develop/port example applications to grid
