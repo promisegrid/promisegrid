@@ -20,9 +20,9 @@ This document is a high-level overview of the project.
 
 The current public work in progress is split across multiple repos,
 including:
-[wire-lab](https://github.com/promisegrid/wire-lab), for protocol,
+- [wire-lab](https://github.com/promisegrid/wire-lab), for protocol,
 kernel, runtime, storage, and application experiments;
-[grid-examples](https://github.com/ciwg/grid-examples), for early
+- [grid-examples](https://github.com/ciwg/grid-examples), for early
 prototypes of runnable example applications.
 
 ## Goals
