@@ -18,13 +18,12 @@ summarized below.
 
 This document is a high-level overview of the project.
 
-The current public work in progress is split across three repos:
+The current public work in progress is split across multiple repos,
+including:
 [wire-lab](https://github.com/promisegrid/wire-lab), for protocol,
 kernel, runtime, storage, and application experiments;
-[promisegrid-dev-guide](https://github.com/ciwg/promisegrid-dev-guide),
-for guide material; and
-[grid-examples](https://github.com/ciwg/grid-examples), for runnable
-example applications.
+[grid-examples](https://github.com/ciwg/grid-examples), for early
+prototypes of runnable example applications.
 
 ## Goals
 
