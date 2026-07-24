@@ -24,6 +24,8 @@ including:
 kernel, runtime, storage, and application experiments;
 - [grid-examples](https://github.com/ciwg/grid-examples), for early
 prototypes of runnable example applications.
+- [Soupstone OpenEdEx](https://learn.soupstone.zone/courses/) is
+  pulling together a set of educational materials for PromiseGrid
 
 ## Goals
 
