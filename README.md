@@ -16,10 +16,16 @@ computation, communication, and governance run by the participants who
 rely on them.  Current executable work is still prototype work, as
 summarized below.
 
-This document is a high-level overview of the project.
+This document is a high-level overview of the project. Related
+documents that are reasonably current include: 
 
-The current public work in progress is split across multiple repos,
-including:
+- [CBOR 'grid' tag spec](https://github.com/promisegrid/promisegrid/blob/main/docs/grid-cbor-tag-spec.md)
+- ["Good Practices" guide](https://github.com/promisegrid/wire-lab/blob/main/GOOD-PRACTICES.md)
+- [Kernel/App Relationship](https://github.com/promisegrid/wire-lab/blob/main/docs/kernel-app-relationship.md)
+- [Decentralized Manufacturing Draft White Paper](https://github.com/ciwg/FAB26-Presentation/blob/main/whitepaper_draft.md)
+
+Other repos include:
+
 - [wire-lab](https://github.com/promisegrid/wire-lab), for protocol,
 kernel, runtime, storage, and application experiments;
 - [grid-examples](https://github.com/ciwg/grid-examples), for early
