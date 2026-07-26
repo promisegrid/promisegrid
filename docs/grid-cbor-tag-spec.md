@@ -2,8 +2,8 @@
 
 ## IANA Registration Status
 
-This document is the intended public semantics document for an IANA CBOR
-Tags registry request.
+This document is the public semantics document for the IANA CBOR Tags
+registry entry for the PromiseGrid `grid` tag.  The tag is registered.
 
 ## Terminology
 
