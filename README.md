@@ -20,6 +20,7 @@ This document is a high-level overview of the project. Related
 documents that are reasonably current include: 
 
 - [CBOR 'grid' tag spec](https://github.com/promisegrid/promisegrid/blob/main/docs/grid-cbor-tag-spec.md)
+- [Grid CBOR multicodec spec](https://github.com/promisegrid/promisegrid/blob/main/docs/grid-cbor-multicodec-spec.md)
 - ["Good Practices" guide](https://github.com/promisegrid/wire-lab/blob/main/GOOD-PRACTICES.md)
 - [Kernel/App Relationship](https://github.com/promisegrid/wire-lab/blob/main/docs/kernel-app-relationship.md)
 - [Decentralized Manufacturing Draft White Paper](https://github.com/ciwg/FAB26-Presentation/blob/main/whitepaper_draft.md)
