@@ -36,6 +36,7 @@ Affects: `TODO/TODO-gilog-grid-cbor-multicodec.md`, `docs/grid-cbor-multicodec-s
   multicodec registration decision.
 - [x] gilog.2 Publish the generic structural codec specification.
 - [x] gilog.3 Link the codec specification from the README.
-- [ ] gilog.4 Propose the draft `grid-cbor` row to the multicodec registry.
+- [x] gilog.4 Propose the draft `grid-cbor` row to the multicodec registry in
+  [multiformats/multicodec PR 409](https://github.com/multiformats/multicodec/pull/409).
 - [ ] gilog.5 Track registry review without treating an unmerged proposal as an
   assigned code.
