@@ -11,6 +11,16 @@ Intent: Give independent implementations one reproducible representation, allow 
 Constraints: The outer value is the registered `grid` CBOR tag over an array whose slot 0 is a tag-42 pCID. Use preferred shortest forms, definite lengths, bytewise-lexicographic map-key ordering, canonical NaN and infinity encodings, and preserve negative zero and other CBOR-level distinctions. Do not normalize Unicode or reduce tagged or floating-point values based on application semantics. Every recursively visible valid tag-42 CID is an unlabeled graph edge; do not scan opaque byte strings, infer retention, or automatically fetch targets. Unknown tags remain valid. Malformed tag-42 values, duplicate map keys, and non-deterministic encodings are invalid. The exact proposal code remains provisional until merged by the registry; existing CIDs are never relabeled. The public specification and registry proposal must contain no private application data.
 Affects: `TODO/TODO-gilog-grid-cbor-multicodec.md`, `TODO/TODO.md`, `docs/grid-cbor-multicodec-spec.md`, `README.md`, the external `multiformats/multicodec` draft registration proposal
 
+ID: DI-vogod
+Date: 2026-08-02 19:02:43
+Status: active
+Author: stevegt@t7a.org (Steve Traugott)
+Decision: Revise the public `grid-cbor` specification to define the proposed codec's deterministic Grid envelope encoding, visible tag-42 CID validity, and recommended decoder rejection behavior. Remove the separate claims about generic `cbor/0x51` using the same serialization, pCIDs not selecting another inline base encoding, generic software recording each visible CID as an edge, and existing CIDs never being relabeled. Remove the duplicate data-item definition and conformance vectors. Use `SHOULD`, rather than `MUST`, for rejecting malformed or nonconforming input.
+Intent: Keep the public codec proposal concise and avoid freezing compatibility, graph-index, migration, and conformance-vector policy in this specification before those concerns are settled elsewhere.
+Constraints: Continue to require RFC 8949 Core Deterministic Encoding for complete Grid envelopes, permit arbitrary valid CBOR tags and map-key types, require every visible tag-42 value to contain a valid CID, and prohibit trusting or executing a message merely because its Grid format is valid. The Grid CBOR tag specification remains the source for the envelope shape. Code `0x1027` remains provisional, and the public specification must contain no private application data.
+Affects: `TODO/TODO-gilog-grid-cbor-multicodec.md`, `docs/grid-cbor-multicodec-spec.md`, the external `multiformats/multicodec` draft registration proposal
+Supersedes: DI-rizuz
+
 ## Task
 
 - [x] gilog.1 Record the deterministic Grid CBOR representation and proposed
