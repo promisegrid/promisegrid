@@ -6,8 +6,6 @@ This document specifies the proposed `grid-cbor` multicodec. The requested
 draft code is `0x1027`; that number is provisional until merged into the
 multicodec registry.
 
-Decision source: [DI-vogod](../TODO/TODO-gilog-grid-cbor-multicodec.md).
-
 ## Terminology
 
 - **Concise Binary Object Representation (CBOR):** the binary data format

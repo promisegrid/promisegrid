@@ -21,6 +21,15 @@ Constraints: Continue to require RFC 8949 Core Deterministic Encoding for comple
 Affects: `TODO/TODO-gilog-grid-cbor-multicodec.md`, `docs/grid-cbor-multicodec-spec.md`, the external `multiformats/multicodec` draft registration proposal
 Supersedes: DI-rizuz
 
+ID: DI-nipap
+Date: 2026-08-02 19:07:05
+Status: active
+Author: stevegt@t7a.org (Steve Traugott)
+Decision: Keep the public Grid CBOR multicodec specification free of internal DR, DI, and TODO references. Preserve decision provenance in the repository's internal coordination records and Git history rather than linking those records from the public specification.
+Intent: Keep the public standards document self-contained and avoid exposing internal project-coordination machinery to its readers.
+Constraints: This changes provenance presentation only; it does not change the specification's technical requirements. Public standards and public PromiseGrid documents may remain linked. Internal DR, DI, and TODO records remain the source of truth for project decisions. This is the user's explicit exception to the repo rule that settled statements in documents cite a DI.
+Affects: `TODO/TODO-gilog-grid-cbor-multicodec.md`, `docs/grid-cbor-multicodec-spec.md`
+
 ## Task
 
 - [x] gilog.1 Record the deterministic Grid CBOR representation and proposed
