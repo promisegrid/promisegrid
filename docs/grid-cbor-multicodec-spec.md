@@ -118,6 +118,9 @@ node with string keys:
 
 ### Floating point values
 
+See [https://ipld.io/docs/data-model/kinds/#float-kind](https://ipld.io/docs/data-model/kinds/#float-kind)
+for background and cautions about floating-point values in IPLD.
+
 A `grid-cbor` block SHOULD represent decimal values as strings or
 other fixed-point representations when possible, and avoid
 floating-point values.
