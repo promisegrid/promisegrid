@@ -91,11 +91,15 @@ A `grid-cbor` decoder SHOULD reject:
 - malformed CBOR or input that exceeds the decoder's stated size, depth, or
   item-count limits.
 
+### pCID Handling
+
 An unknown pCID does not prevent format checking, reproducing the same bytes, or
 finding visible CID links. It does prevent an agent from knowing what the
 protocol-defined slots mean. As required by the Grid CBOR tag specification, an
 agent MUST NOT execute, authorize, or trust a message merely because its Grid
 format is valid.
+
+### Tag conversion
 
 When decoding a `grid-cbor` block, a conforming decoder MUST convert
 found tags into IPLD-compliant nodes in a way that enables
@@ -111,6 +115,22 @@ node with string keys:
   "value": true
 }
 ```
+
+### Floating point values
+
+A `grid-cbor` block SHOULD represent decimal values as strings or
+other fixed-point representations when possible, and avoid
+floating-point values.
+
+A conforming decoder SHOULD store floats as fixed-point types or
+strings internally, and convert them back to the same bytes when
+re-encoding.
+
+Floats SHOULD be assumed to have 64-bit precision unless the pCID
+specifies otherwise.
+
+In all cases, a conforming codec MUST preserve the original bytes of a
+float when re-encoding.
 
 ## Appendix A: Multicodec Registration Proposal
 
