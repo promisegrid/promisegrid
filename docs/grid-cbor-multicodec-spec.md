@@ -126,7 +126,7 @@ other fixed-point representations when possible, and avoid
 floating-point values.
 
 A conforming decoder SHOULD store floats as fixed-point types or
-strings internally, and convert them back to the same bytes when
+strings internally, and MUST convert them back to the same bytes when
 re-encoding.
 
 Floats SHOULD be assumed to have 64-bit precision unless the pCID
