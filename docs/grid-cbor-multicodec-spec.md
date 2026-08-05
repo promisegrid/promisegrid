@@ -2,9 +2,10 @@
 
 ## Status
 
-This document specifies the proposed `grid-cbor` multicodec. The requested
-draft code is `0x1027`; that number is provisional until merged into the
-multicodec registry.
+This draft document specifies the proposed `grid-cbor` multicodec. The
+code `0x1027` was merged into the multicodec registry as a draft entry
+on 05 Aug 2026.
+[https://github.com/multiformats/multicodec/pull/409](https://github.com/multiformats/multicodec/pull/409)
 
 ## Terminology
 
@@ -95,6 +96,21 @@ finding visible CID links. It does prevent an agent from knowing what the
 protocol-defined slots mean. As required by the Grid CBOR tag specification, an
 agent MUST NOT execute, authorize, or trust a message merely because its Grid
 format is valid.
+
+When decoding a `grid-cbor` block, a conforming decoder MUST convert
+found tags into IPLD-compliant nodes in a way that enables
+round-tripping back to the original bytes.  
+
+For example, `{32: true}` in a `grid-cbor` structure SHOULD become a map
+node with string keys:
+
+```text
+{
+  "type": "boolean",
+  "key": 32,
+  "value": true
+}
+```
 
 ## Appendix A: Multicodec Registration Proposal
 
