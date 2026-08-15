@@ -4,7 +4,7 @@
 
 This draft document specifies the proposed `grid-cbor` multicodec. The
 code `0x1027` was merged into the multicodec registry as a draft entry
-on 05 Aug 2026.
+on 12 Aug 2026.
 [https://github.com/multiformats/multicodec/pull/409](https://github.com/multiformats/multicodec/pull/409)
 
 ## Terminology
