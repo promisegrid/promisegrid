@@ -40,3 +40,15 @@ Affects: `TODO/TODO-gilog-grid-cbor-multicodec.md`, `docs/grid-cbor-multicodec-s
   [multiformats/multicodec PR 409](https://github.com/multiformats/multicodec/pull/409).
 - [ ] gilog.5 Track registry review without treating an unmerged proposal as an
   assigned code.
+- [x] gilog.6 Complete
+  [TE-fujur](../docs/thought-experiments/TE-fujur-grid-cbor-dag-cbor-superset.md)
+  as a neutral comparison of Grid-CBOR's DAG-CBOR composition boundary and
+  record the unresolved choice in
+  [DR-tuzob](../DR/DR-tuzob-grid-cbor-dag-cbor-superset.md).
+- [ ] gilog.7 Resolve TE-fujur's surviving encoding and decoded-representation
+  alternatives through one-at-a-time DF questions, then append the required
+  superseding DI or DIs.
+- [ ] gilog.8 Revise the public Grid-CBOR specification and conformance fixtures
+  only after gilog.7 locks the replacement rules.
+- [ ] gilog.9 Audit retained Grid-CBOR objects and migration consequences before
+  changing any deployed codec semantics or relabeling any CID.
